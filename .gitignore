@@ -108,3 +108,41 @@ gradle-app.setting
 
 
 # End of https://www.gitignore.io/api/java,gradle,intellij
+gradlew
+gradle/wrapper/gradle-wrapper.properties
+gradle/wrapper/gradle-wrapper.jar
+DESKIT/DESKit/src/deskit/synchronizers/Trigger.java
+DESKIT/DESKit/src/deskit/synchronizers/Semaphore.java
+DESKIT/DESKit/src/deskit/random/SimGenerator.java
+DESKIT/DESKit/src/deskit/random/RandomSeedable.java
+DESKIT/DESKit/src/deskit/monitors/Statistics.java
+DESKIT/DESKit/src/deskit/monitors/MonitoredVar.java
+DESKIT/DESKit/src/deskit/SimActivity.java
+DESKIT/DESKit/src/deskit/PendingList.java
+DESKIT/DESKit/src/deskit/Application.java
+DESKIT/DESKit/src/deskit/ActivityList.java
+DESKIT/DESKit/nbproject/project.xml
+DESKIT/DESKit/nbproject/project.properties
+DESKIT/DESKit/nbproject/build-impl.xml
+DESKIT/DESKit/build.xml
+.idea/vcs.xml
+.idea/modules/symulacja-komp_test.iml
+.idea/modules/symulacja-komp_main.iml
+.idea/modules/symulacja-komp.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/compiler.xml
+settings.gradle
+gradlew.bat
+DESKIT/DESKit/src/deskit/monitors/Histogram.java
+DESKIT/DESKit/src/deskit/monitors/Diagram.java
+DESKIT/DESKit/src/deskit/monitors/ChangesList.java
+DESKIT/DESKit/src/deskit/monitors/Change.java
+DESKIT/DESKit/src/deskit/SyncSemaphore.java
+DESKIT/DESKit/src/deskit/SimObjectCompare.java
+DESKIT/DESKit/src/deskit/SimObject.java
+DESKIT/DESKit/src/deskit/SimManager.java
+DESKIT/DESKit/src/deskit/SimActivityCompare.java
+DESKIT/DESKit/nbproject/private/private.xml
+DESKIT/DESKit/nbproject/private/private.properties
+DESKIT/DESKit/nbproject/genfiles.properties
