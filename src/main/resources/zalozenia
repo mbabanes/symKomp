@@ -1,0 +1,24 @@
+Restauracja
+
+obiekty:
+    - użytkownik (gość)
+    - danie
+    - stolik
+    - kelner
+zdarzenia:
+    - oczekiwanie na stolik
+    - oczekiwanie na kelnera
+    - składanie zamówienia
+    - oczekiwanie na posiłek
+proces:
+    - przygotowanie posiłku
+zmienne:
+    - wielkość zamówienia
+    - liczba gości
+    - liczba kelnerów
+    - liczba stolikow
+    - liczba kucharzy
+    - liczba dostępnych dań
+
+
+Aby gość mógł zająć stolik kelner musi być dostępny;
