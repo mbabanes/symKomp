@@ -73,7 +73,7 @@ public class Restaurant implements Observer<Waiter>
         }
     }
 
-    public void aasd() throws InterruptedException
+    public void verySimpleSimulation() throws InterruptedException
     {
         prepareTablesWaitersAndGuests();
 
