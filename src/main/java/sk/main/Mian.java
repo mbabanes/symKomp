@@ -9,7 +9,7 @@ public class Mian
         Restaurant restaurant = new Restaurant();
 
 
-            restaurant.aasd();
+            restaurant.verySimpleSimulation();
 
     }
 }
