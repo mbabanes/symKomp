@@ -1,5 +1,8 @@
 package sk.entity;
 
+import lombok.Getter;
+
+@Getter
 public class Guest
 {
     private static int ID = 0;
@@ -21,6 +24,11 @@ public class Guest
     public void setPlace(boolean place)
     {
         this.place = place;
+    }
+
+    public void give(Order order)
+    {
+
     }
 
     @Override

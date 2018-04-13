@@ -32,7 +32,7 @@ public class Table implements Observable
         this.free = free;
         if(free)
         {
-            reportIsFree();
+            report();
         }
     }
 
@@ -43,7 +43,7 @@ public class Table implements Observable
     }
 
     @Override
-    public void reportIsFree()
+    public void report()
     {
         System.out.println("Zwolnił się stolik nr: " + number);
         patrons.forEach(patron -> patron.update(this));

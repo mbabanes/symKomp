@@ -12,11 +12,12 @@ public class Main
 //
 //            restaurant.verySimpleSimulation();
 
-        Order order = new Order();
+        int g = 5;
 
-        order.setId(1);
+        int k = 3;
+        System.out.println(g / k);
+        System.out.println(Math.ceil(g / k));
 
-        System.out.println(order.getId());
 
     }
 }

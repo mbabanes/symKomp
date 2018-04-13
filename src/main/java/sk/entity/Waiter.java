@@ -45,11 +45,11 @@ public class Waiter implements Observable, Observer<Table>
     {
         this.free = free;
         if(free)
-            reportIsFree();
+            report();
     }
 
     @Override
-    public void reportIsFree()
+    public void report()
     {
         restaurant.update(this);
     }
@@ -86,6 +86,11 @@ public class Waiter implements Observable, Observer<Table>
             Table table = findFreeTable();
             invite(table, guest);
         }
+    }
+
+    public void giveOrder(Order order)
+    {
+        guests.get(order.getTableNumber()).give(order);
     }
 
     private boolean isTooBusy()
