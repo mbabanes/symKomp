@@ -4,6 +4,7 @@ import org.junit.Test;
 import sk.entity.Guest;
 import sk.entity.Meal;
 import sk.entity.Order;
+import sk.entity.Waiter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class OrderServiceTest
 
         OrderService orderService = new OrderService();
 
-        Order order = orderService.makeOrderFor(new Guest(), meals);
+        Order order = orderService.makeOrderFor(null, null, meals);
 
         assertEquals(4, order.getTime());
     }
