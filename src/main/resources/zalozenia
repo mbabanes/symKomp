@@ -2,11 +2,11 @@ Restauracja
 
 obiekty:
     - użytkownik (gość)
-    - danie
+    - danie/zamowienie
     - stolik
     - kelner
 zdarzenia:
-    - oczekiwanie na stolik
+    - oczekiwanie na stolik/zwolnienie stolika
     - oczekiwanie na kelnera
     - składanie zamówienia
     - oczekiwanie na posiłek
