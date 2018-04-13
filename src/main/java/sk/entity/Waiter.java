@@ -24,6 +24,10 @@ public class Waiter implements Observable, Observer<Table>
     private boolean free = true;
 
 
+    public Waiter()
+    {
+    }
+
     public Waiter(Observer<Waiter> restaurant)
     {
         addObserver(restaurant);
@@ -90,7 +94,8 @@ public class Waiter implements Observable, Observer<Table>
 
     public void giveOrder(Order order)
     {
-        guests.get(order.getTableNumber()).give(order);
+        guests.get(order.getGuest().getTableNumber())
+              .give(order);
     }
 
     private boolean isTooBusy()
@@ -110,6 +115,7 @@ public class Waiter implements Observable, Observer<Table>
     private void invite(Table table, Guest guest)
     {
         guests.put(table.getNumber(), guest);
+        guest.setTableNumber(table.getNumber());
         table.setFree(false);
         guestsNumber++;
 

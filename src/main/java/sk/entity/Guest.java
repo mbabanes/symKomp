@@ -1,14 +1,17 @@
 package sk.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Guest
 {
     private static int ID = 0;
 
     private boolean place = false;
     private int id;
+    private int tableNumber;
 
 
     public Guest()
@@ -21,10 +24,6 @@ public class Guest
         return place;
     }
 
-    public void setPlace(boolean place)
-    {
-        this.place = place;
-    }
 
     public void give(Order order)
     {

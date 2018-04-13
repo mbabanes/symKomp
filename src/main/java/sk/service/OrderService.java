@@ -6,10 +6,9 @@ import java.util.List;
 
 public class OrderService
 {
-    public Order makeOrderFor(Guest guest,Waiter waiter, int tableNumber, List<Meal> meals)
+    public Order makeOrderFor(Guest guest, Waiter waiter, List<Meal> meals)
     {
         Order order = new Order();
-        order.setTableNumber(tableNumber);
         order.setWaiter(waiter);
         order.setGuest(guest);
         order.setMeals(meals);

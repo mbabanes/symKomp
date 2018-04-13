@@ -12,7 +12,6 @@ public class Order
 {
     private int id;
     private Guest guest;
-    private int tableNumber;
     private Waiter waiter;
     private List<Meal> meals = new ArrayList<>();
     private int time;
