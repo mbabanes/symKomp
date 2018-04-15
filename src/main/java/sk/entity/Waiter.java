@@ -1,11 +1,13 @@
 package sk.entity;
 
+import deskit.SimObject;
 import sk.restaurant.expection.NoSuchTableException;
 import sk.util.Observer;
 import sk.util.Observable;
 import java.util.*;
 
-public class Waiter implements Observable, Observer<Table>
+public class Waiter
+        implements Observable, Observer<Table>
 {
     private final static int MAX_GUESTS_NUMBER = 3;
 

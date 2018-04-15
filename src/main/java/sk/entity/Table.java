@@ -1,12 +1,14 @@
 package sk.entity;
 
+import deskit.SimObject;
 import sk.util.Observable;
 import sk.util.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table implements Observable
+public class Table
+        implements Observable
 {
     protected static int ID = 0;
 

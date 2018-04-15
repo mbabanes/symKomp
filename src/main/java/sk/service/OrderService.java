@@ -25,17 +25,4 @@ public class OrderService
                     .map(Meal::getTime)
                     .reduce(0, (a, b) -> a + b);
     }
-
-    public void perepareOrder(Order order)
-    {
-        try
-        {
-            int time = (int)Math.ceil(order.getTime() / Cook.NUMBER );
-            Thread.sleep(time);
-        }
-        catch (InterruptedException e)
-        {
-
-        }
-    }
 }

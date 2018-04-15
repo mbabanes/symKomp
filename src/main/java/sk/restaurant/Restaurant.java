@@ -1,22 +1,33 @@
 package sk.restaurant;
 
+import deskit.SimObject;
 import sk.entity.Guest;
+import sk.service.WaiterActivity;
 import sk.util.Observer;
 import sk.entity.Table;
 import sk.entity.Waiter;
 import sk.restaurant.expection.NoSuchTableException;
 
 import java.util.*;
+import java.util.concurrent.LinkedBlockingDeque;
 
-public class Restaurant implements Observer<Waiter>
+public class Restaurant
+        extends SimObject
+        implements Observer<Waiter>
 {
     private static final Random random = new Random();
 
-    private Deque<Guest> expectantGuests = new LinkedList<>();
+    public static Deque<Guest> expectantGuests = new LinkedBlockingDeque<>();
 
-    private List<Waiter> waiters = new ArrayList<>();
-    private List<Table> tables = new ArrayList<>();
+    public static List<Waiter> waiters = new ArrayList<>();
+    public static List<Table> tables = new ArrayList<>();
 
+    public WaiterActivity waiterActivity = new WaiterActivity();
+
+    public Restaurant()
+    {
+        this.prepareTablesWaitersAndGuests();
+    }
 
     @Override
     public void update(Waiter waiter)

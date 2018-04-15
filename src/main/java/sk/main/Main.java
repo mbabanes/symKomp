@@ -1,9 +1,13 @@
 package sk.main;
 
+import deskit.Application;
+import deskit.SimActivity;
+import deskit.SimManager;
 import sk.entity.Order;
 import sk.restaurant.Restaurant;
+import sk.service.WaiterActivity;
 
-public class Main
+public class Main extends Application
 {
     public static void main(String[] args) throws InterruptedException
     {
@@ -12,12 +16,10 @@ public class Main
 //
 //            restaurant.verySimpleSimulation();
 
-        int g = 5;
+        Restaurant restaurant = new Restaurant();
 
-        int k = 3;
-        System.out.println(g / k);
-        System.out.println(Math.ceil(g / k));
-
-
+        SimActivity.callActivity(restaurant, restaurant.waiterActivity);
+        SimManager.getSimManager().setStopTime(20000);
+//        SimManager.getSimManager().startSimulation();
     }
 }

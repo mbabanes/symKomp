@@ -1,5 +1,6 @@
 package sk.entity;
 
+import deskit.SimObject;
 import sk.restaurant.expection.CookTooBusyException;
 import sk.util.Observable;
 import sk.util.Observer;

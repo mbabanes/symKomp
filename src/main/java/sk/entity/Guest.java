@@ -1,5 +1,6 @@
 package sk.entity;
 
+import deskit.SimObject;
 import lombok.Getter;
 import lombok.Setter;
 
