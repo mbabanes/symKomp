@@ -24,4 +24,9 @@ public class WaiterSimObject extends SimObject
     }
 
 
+    public String debugMessage()
+    {
+        return "[Kelner " + id + "]:";
+    }
+
 }

@@ -11,10 +11,12 @@ public class Main
 
 //        SimActivity.callActivity(restaurantSimObject, restaurantSimObject.getNewGuest());
 
-        SimManager.getSimManager().setStopTime(20000000);
+        SimManager.getSimManager().setStopTime(200000000);
 
         System.out.println("Symulacja");
         SimManager.getSimManager().startSimulation();
         System.out.println("Koniec");
+
+        System.out.println(RestaurantSimObject.expectantGuests.size());
     }
 }

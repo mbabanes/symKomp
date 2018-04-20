@@ -20,10 +20,10 @@ public class TakingGuestActivity extends SimActivity
     @Override
     public void action()
     {
-        System.out.print(debugMessage());
+        System.out.print("\n" + debugMessage());
         System.out.println("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
-        while (expectantGuestAreInRestaurant())
+        while (RestaurantSimObject.expectantGuestAreInRestaurant())
         {
             Guest guest = RestaurantSimObject.expectantGuests.getFirst();
             if (this.takeGuest(guest.getId()))
@@ -31,15 +31,12 @@ public class TakingGuestActivity extends SimActivity
                 RestaurantSimObject.expectantGuests.removeFirst();
             } else
             {
-                waitForFreeWaiter();
+                RestaurantSimObject.callWaiters();
+                break;
             }
         }
     }
 
-    private boolean expectantGuestAreInRestaurant()
-    {
-        return !RestaurantSimObject.expectantGuests.isEmpty();
-    }
 
     private void waitForFreeWaiter()
     {
@@ -48,7 +45,7 @@ public class TakingGuestActivity extends SimActivity
         guestLeave();
     }
 
-    public boolean takeGuest(int idGuest)
+    private boolean takeGuest(int idGuest)
     {
         if (waiter.isFree())
         {
