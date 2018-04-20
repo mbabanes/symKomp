@@ -78,7 +78,7 @@ public class Waiter
     @Override
     public String toString()
     {
-        return "Waiter{" +
+        return "WaiterSimObject{" +
                 "id=" + id +
                 '}';
     }

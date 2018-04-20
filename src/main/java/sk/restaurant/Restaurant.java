@@ -1,5 +1,6 @@
 package sk.restaurant;
 
+import deskit.SimActivity;
 import deskit.SimObject;
 import sk.entity.Guest;
 import sk.service.WaiterActivity;
@@ -12,7 +13,7 @@ import java.util.*;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class Restaurant
-        extends SimObject
+        extends SimActivity
         implements Observer<Waiter>
 {
     private static final Random random = new Random();
@@ -22,11 +23,23 @@ public class Restaurant
     public static List<Waiter> waiters = new ArrayList<>();
     public static List<Table> tables = new ArrayList<>();
 
-    public WaiterActivity waiterActivity = new WaiterActivity();
 
     public Restaurant()
     {
         this.prepareTablesWaitersAndGuests();
+    }
+
+    @Override
+    public void action()
+    {
+        try
+        {
+            verySimpleSimulation();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override

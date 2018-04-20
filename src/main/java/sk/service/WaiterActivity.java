@@ -40,7 +40,6 @@ public class WaiterActivity extends SimActivity
                 }
             }else
             {
-//                makeTableFree();
                 try
                 {
                     waitForFreeTable(Restaurant.expectantGuests.getFirst());
