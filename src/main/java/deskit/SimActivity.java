@@ -115,13 +115,17 @@ abstract public class SimActivity extends Thread {//implements Runnable{
 		while (!stopped) {
 			action();
 			parentSimObject.removeSimActivityFromActivityList(this);
+
+            //dodac do listy zawieszonych tymczasowo aktywnosci w simobject
+            parentSimObject.addSimActivityToSuspendedList(this);
+
 			interrupted = false;
 			state = 'F'; // finished
 			if (stopped) break;
 			if (parentSimActivity != null){
-				parentSimActivity.resumeActivity();
+				parentSimActivity.resumeActivity(); //dla callActivity
 			} else {
-				simManager.signal(this);
+				simManager.signal(this); //dla waitForActivity
 			}
 			if (stopped) break;
 			semRun.waitOnSem();
@@ -137,6 +141,10 @@ abstract public class SimActivity extends Thread {//implements Runnable{
 
 	private void start(double time) {
 		timeOfResume = simManager.getSimTime() + time;
+
+        //usuniecie z listy zawieszonych tymczasowo simobject;
+        parentSimObject.removeSimActivityFromSuspendedList(this);
+
 		parentSimObject.addSimActivityToActivityList(this);
 	}
 
@@ -197,6 +205,10 @@ abstract public class SimActivity extends Thread {//implements Runnable{
 	
 	public void terminate() {
 		parentSimObject.removeSimActivityFromActivityList(this);
+
+        //removeSimActivityFromSuspendedList dla drugiej listy - jesli nie usunal z powyzszej
+        parentSimObject.removeSimActivityFromSuspendedList(this);
+
 		stopped = true;
 		semWaitFor.signalSem();
 		if (trigger != null) trigger.interrupt(this);
@@ -374,7 +386,6 @@ abstract public class SimActivity extends Thread {//implements Runnable{
 			if (method.getMyState() == 'N') {
 				executedActivity = method;
 				method.setParentSimObject(paren);
-                                method.simManager = paren.simManager; /*dodane*/
 				method.setParentSimActivity(this);
 				synchronized (semWaitFor) {
 					state = 'M';

@@ -53,7 +53,8 @@ public class SimManager {
 	public String startSimulation() {
 		try {
 			System.out.println();
-			System.out.println("SimManager("+simMgr+"): Rozpoczeto symulacje");
+			//System.out.println("SimManager("+simMgr+"): Rozpoczeto symulacje");
+			System.out.println("Rozpoczeto symulacje");
 			running = true;
 			SimObject tmpObject;
 			SimActivity tmpActivity;
@@ -64,7 +65,8 @@ public class SimManager {
 					setSimTime(tmpActivity.getTimeOfResume());
 					tmpActivity.resumeActivity();
 					sem.waitOnSem();
-					System.out.println("SimManager("+simMgr+"): Zakonczono symulacje "+getSimTime());
+					//System.out.println("SimManager("+simMgr+"): Zakonczono symulacje "+getSimTime());
+					System.out.println("Zakonczono symulacje "+getSimTime());
 					return "SimManager: zakonczono symulacje";
 				} else {
 					stopSimulation();	
@@ -162,11 +164,20 @@ public class SimManager {
     			SimActivity tmpActivity;
     			tmpActivity = tmpObject.getFirstSimActivityFromActivityList();
     			tmpActivity.terminate();
+                //System.out.println("*terminate thread*");
     			tmpObject.removeSimActivityFromActivityList(tmpActivity);
+    		}
+            //przegladanie listy tymczasowo zawieszonych
+            while((tmpObject != null) && (tmpObject.getSuspendedListSize() > 0)){
+    			SimActivity tmpActivity;
+    			tmpActivity = tmpObject.getFirstSimActivityFromSuspendedList();
+    			tmpActivity.terminate();
+                //System.out.println("*terminate thread suspended*");
+    			tmpObject.removeSimActivityFromSuspendedList(tmpActivity);
     		}
     		pendingList.remove(tmpObject);
     	}
-    	System.out.println("terminate threads");
+    	//System.out.println("terminate threads");
     	
     }
     

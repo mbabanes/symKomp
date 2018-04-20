@@ -6,9 +6,10 @@ public abstract class SimObject {
 
 	public SimManager simManager = null;
 	private ActivityList activityList = null;
+    private SuspendedList suspendedList = null; //lista tymczasowo zawieszonych
 
 	public SimObject() {
-		initSimObject(SimManager.getSimManager());		
+		initSimObject(SimManager.getSimManager());	
 	}
 
 	/**
@@ -21,9 +22,14 @@ public abstract class SimObject {
 	public void initSimObject(SimManager simManager) {
 		this.simManager = simManager;
 		activityList = new ActivityList();
+        suspendedList = new SuspendedList();
 		//initialize();
 		this.simManager.addToPendingList(this);
 	}
+
+    public int getSuspendedListSize() {
+        return suspendedList.size();
+    }
 
 	public int getActivityListSize() {
 		return activityList.size();
@@ -31,6 +37,11 @@ public abstract class SimObject {
 
 	public SimActivity getFirstSimActivityFromActivityList() {
 		SimActivity simActivity = activityList.getFirst();
+		return simActivity;
+	}
+    
+    public SimActivity getFirstSimActivityFromSuspendedList() {
+		SimActivity simActivity = suspendedList.getFirst();
 		return simActivity;
 	}
 
@@ -47,11 +58,27 @@ public abstract class SimObject {
 		return pom;
 	}
 
+    public boolean addSimActivityToSuspendedList(SimActivity simActivity) {
+		boolean pom = false;
+		synchronized (suspendedList) {
+			pom = suspendedList.add(simActivity);
+		}
+		return pom;
+	}
+
 	public boolean removeSimActivityFromActivityList(SimActivity simActivity) {
 		boolean pom = false;
 		synchronized (activityList) {
 			pom = activityList.remove(simActivity);
 			simManager.sortPendingList();
+		}
+		return pom;
+	}
+
+    public boolean removeSimActivityFromSuspendedList(SimActivity simActivity) {
+		boolean pom = false;
+		synchronized (suspendedList) {
+			pom = suspendedList.remove(simActivity);
 		}
 		return pom;
 	}
