@@ -1,29 +1,23 @@
 package sk.sim.activity;
 
 import deskit.SimActivity;
-import sk.sim.RestaurantSimObject;
+import sk.sim.object.GuestSimObject;
 import sk.sim.object.WaiterSimObject;
 
 public class GuestOutingActivity extends SimActivity
 {
-    private WaiterSimObject waiterSimObject;
+    private GuestSimObject guest;
 
-    public GuestOutingActivity(WaiterSimObject waiterSimObject)
+    public GuestOutingActivity(GuestSimObject guest)
     {
-        this.waiterSimObject = waiterSimObject;
+        this.guest = guest;
     }
 
     @Override
     public void action()
     {
-//        waitDuration(100);
-        System.out.println(waiterSimObject.debugMessage() + " gość wyszedł");
-        waiterSimObject.getCurrentGuestNumber().decrementAndGet();
-        System.out.println(waiterSimObject.getCurrentGuestNumber().get());
-    }
-
-    public WaiterSimObject getWaiter()
-    {
-        return waiterSimObject;
+        waitDuration(guest.getTime());
+        System.out.println(guest.getWaiterSimObject().debugMessage() + " gość wyszedł");
+        guest.getWaiterSimObject().getCurrentGuestNumber().decrementAndGet();
     }
 }
