@@ -2,7 +2,8 @@ package sk.sim.activity;
 
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
-import sk.sim.object.Guest;
+import sk.sim.exception.NoFreeWaiterException;
+import sk.sim.object.GuestSimObject;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,35 +18,46 @@ public class NewGuestActivity extends SimActivity
     @Override
     public void action()
     {
-       while(true)
-       {
-           addGuest();
+        while (true)
+        {
+            addGuest();
 
-           if (RestaurantSimObject.expectantGuests.size() > 6)
-           {
-               System.out.println("\nNowi goscie stop\n");
-               waitDuration(10000);
-               RestaurantSimObject.callWaiters();
-           }
+            if (RestaurantSimObject.expectantGuests.size() > 6)
+            {
+                System.out.println("\nNowi goscie stop\n");
+                waitDuration(10000);
+                callWaiters();
+            }
 
 
-           if( (counter.getAndIncrement() > MAX_GUEST_NUMBER) && ( RestaurantSimObject.expectantGuestAreInRestaurant() ) )
-           {
-               RestaurantSimObject.callWaiters();
-               break;
-           }
-       }
+            if ((counter.getAndIncrement() > MAX_GUEST_NUMBER))
+            {
+                while(RestaurantSimObject.expectantGuestAreInRestaurant())
+                {
+                    waitDuration(1000);
+                    callWaiters();
+                }
+                break;
+            }
+        }
     }
 
     private void addGuest()
     {
-//        restaurantSimObject = (RestaurantSimObject) getParentSimObject();
+        GuestSimObject guest = new GuestSimObject(random.nextInt(2300));
+        RestaurantSimObject.expectantGuests.addLast(guest);
+        System.out.println("Nowy gosc w kolejce: " + guest);
+    }
 
-//            Thread.sleep(random.nextInt(600));
-            waitDuration(random.nextInt(6000));
-            Guest guest = new Guest();
-            RestaurantSimObject.expectantGuests.addLast(guest);
-            System.out.println("Nowy gosc w kolejce: " + guest);
-
+    private void callWaiters()
+    {
+        try
+        {
+            RestaurantSimObject.callWaiters();
+        }
+        catch (NoFreeWaiterException e)
+        {
+            RestaurantSimObject.bidFarewellSomeGuest();
+        }
     }
 }
