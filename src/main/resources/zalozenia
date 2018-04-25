@@ -22,3 +22,8 @@ zmienne:
 
 
 Aby gość mógł zająć stolik kelner musi być dostępny;
+
+
+
+Zrobić zeby goście wychodzili asynchronicznie
+tzn. po wzięciu gościa przez kelnera, po zadanym czasie uruchamiała się aktywnosć opuszczenia gościa.
