@@ -2,7 +2,7 @@ package sk.sim.activity;
 
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
-import sk.sim.object.Guest;
+import sk.sim.object.GuestSimObject;
 import sk.sim.object.WaiterSimObject;
 
 import java.util.Random;
@@ -23,42 +23,24 @@ public class TakingGuestActivity extends SimActivity
         System.out.print("\n" + debugMessage());
         System.out.println("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
-        while (RestaurantSimObject.expectantGuestAreInRestaurant())
+        while ( this.waiter.isFree() )
         {
-            Guest guest = RestaurantSimObject.expectantGuests.getFirst();
-            if (this.takeGuest(guest.getId()))
+            if( RestaurantSimObject.expectantGuestAreInRestaurant() )
             {
-                RestaurantSimObject.expectantGuests.removeFirst();
-            } else
-            {
-                RestaurantSimObject.callWaiters();
-                break;
+                GuestSimObject guest = RestaurantSimObject.expectantGuests.removeFirst();
+                this.takeGuest(guest);
             }
+            else break;
         }
     }
 
 
-    private void waitForFreeWaiter()
+    private void takeGuest(GuestSimObject guest)
     {
-        long time = random.nextInt(5000);
-        waitDuration(time);
-        guestLeave();
-    }
-
-    private boolean takeGuest(int idGuest)
-    {
-        if (waiter.isFree())
-        {
-            System.out.println(debugMessage() + "Wzial goscia nr: " + idGuest);
-            waiter.getCurrentGuestNumber().incrementAndGet();
-            return true;
-        } else return false;
-    }
-
-    private void guestLeave()
-    {
-        System.out.println(debugMessage() + " gość wyszedł");
-        waiter.getCurrentGuestNumber().decrementAndGet();
+        System.out.println(debugMessage() + "Wzial goscia nr: " + guest.getId());
+        guest.setWaiterSimObject(waiter);
+        RestaurantSimObject.servedGuests.add(guest);
+        waiter.getCurrentGuestNumber().incrementAndGet();
     }
 
     private String debugMessage()
