@@ -1,4 +1,4 @@
-package sk.sim.object;
+package sk.sim.objects;
 
 import deskit.SimObject;
 import lombok.Getter;
@@ -21,6 +21,12 @@ public class WaiterSimObject extends SimObject
         if (currentGuestNumber.get() == 3)
             return false;
         return true;
+    }
+
+
+    public void takeGuest()
+    {
+        currentGuestNumber.getAndIncrement();
     }
 
 
