@@ -27,3 +27,10 @@ Aby gość mógł zająć stolik kelner musi być dostępny;
 
 Zrobić zeby goście wychodzili asynchronicznie
 tzn. po wzięciu gościa przez kelnera, po zadanym czasie uruchamiała się aktywnosć opuszczenia gościa.
+
+Gosc zostaje przyjety
+    1. Sklada zamowienie
+    2. Oczekuje na zamowienie
+    3. Je
+    4. Odpoczynek
+    5. Wychodzenie
