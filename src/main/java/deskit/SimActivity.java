@@ -381,7 +381,7 @@ abstract public class SimActivity extends Thread {//implements Runnable{
     	interrupted = false;
 		if ((method == null) || (paren == null))
 			System.err
-					.println("Error : waitFor : null pointer to method or parent object.");
+					.println("Error : waitFor : null pointer to method or parent objects.");
 		else {
 			if (method.getMyState() == 'N') {
 				executedActivity = method;

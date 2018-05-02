@@ -1,10 +1,10 @@
 /*
 Rozszerzenia w klasie Diagram:
-- podwójne buforowanie obrazu (zmniejszenie opóŸnieñ podczas przesuwania i zmieniania rozmiaru okna),
-- opisy osi oraz legenda (mo¿liwoœæ wprowadzania opisów),
-- mo¿liwoœæ ukrywania krzywych,
-- mo¿liwoœæ dodawania sta³ych do wykresu zale¿noœci czasowych,
-- zapis wykresów do plików w formacie PNG.
+- podwï¿½jne buforowanie obrazu (zmniejszenie opï¿½nieï¿½ podczas przesuwania i zmieniania rozmiaru okna),
+- opisy osi oraz legenda (moï¿½liwoï¿½ï¿½ wprowadzania opisï¿½w),
+- moï¿½liwoï¿½ï¿½ ukrywania krzywych,
+- moï¿½liwoï¿½ï¿½ dodawania staï¿½ych do wykresu zaleï¿½noï¿½ci czasowych,
+- zapis wykresï¿½w do plikï¿½w w formacie PNG.
 Arkadiusz Netczuk,grupa I5B1S0
 */
 
@@ -286,7 +286,7 @@ public class Diagram extends javax.swing.JFrame
 	}
 
 	/**
-	 * Initialize the object
+	 * Initialize the objects
 	 * @param title
 	 */
 	private void initialize(String title) {
