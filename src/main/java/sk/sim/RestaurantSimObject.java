@@ -3,11 +3,10 @@ package sk.sim;
 import deskit.SimActivity;
 import deskit.SimObject;
 import lombok.Getter;
-import sk.sim.activity.NewGuestActivity;
-import sk.sim.activity.TakingGuestActivity;
-import sk.sim.exception.NoFreeWaiterException;
-import sk.sim.object.GuestSimObject;
-import sk.sim.object.WaiterSimObject;
+import sk.sim.activities.NewGuestComingActivity;
+import sk.sim.activities.TakingGuestActivity;
+import sk.sim.objects.GuestSimObject;
+import sk.sim.objects.WaiterSimObject;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,9 +16,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Getter
 public class RestaurantSimObject extends SimObject
 {
-    public static int WAITERS_NUMBER = 3;
-
     private static final Random random = new Random();
+
+    public static int WAITERS_NUMBER = 3;
+    public static AtomicBoolean opened = new AtomicBoolean(true);
+
 
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
 
@@ -28,24 +29,21 @@ public class RestaurantSimObject extends SimObject
     public static List<GuestSimObject> servedGuests = Collections.synchronizedList(new ArrayList<>());
 
 
-    private SimActivity newGuest = new NewGuestActivity();
+    private SimActivity newGuest;
 
     public RestaurantSimObject()
     {
-        prepareGuests();
+        prepareFirstGuests();
         waitersInitialization();
 
+        newGuest = new NewGuestComingActivity();
+
         SimActivity.callActivity(this, newGuest);
+        this.callWaiters();
     }
 
-    public static void bidFarewellSomeGuest()
-    {
-        int g = random.nextInt(servedGuests.size());
-        GuestSimObject guest = servedGuests.get(g);
-        guest.out();
-    }
 
-    private void prepareGuests()
+    private void prepareFirstGuests()
     {
         expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
         expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
@@ -66,26 +64,24 @@ public class RestaurantSimObject extends SimObject
         }
     }
 
-    public static void callWaiters() throws NoFreeWaiterException
+    private void callWaiters()
     {
-        Optional<WaiterSimObject> waiterSimObjectOptional = findFirsFreeWaiter();
-
-        WaiterSimObject waiterSimObject = waiterSimObjectOptional.orElseThrow(NoFreeWaiterException::new);
-
-
-        System.out.println("Znalezlem wolnego" + waiterSimObject.debugMessage());
-        SimActivity.callActivity(waiterSimObject, waiters.get(waiterSimObject));
+        waiters.forEach(SimActivity::callActivity);
     }
 
-    private static Optional<WaiterSimObject> findFirsFreeWaiter()
-    {
-        return waiters.keySet().stream()
-                .filter(WaiterSimObject::isFree)
-                .findFirst();
-    }
 
     public static boolean expectantGuestAreInRestaurant()
     {
         return !expectantGuests.isEmpty();
+    }
+
+    public static boolean isOpened()
+    {
+        return opened.get();
+    }
+
+    public static void close()
+    {
+        opened.set(false);
     }
 }
