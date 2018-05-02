@@ -11,8 +11,6 @@ public class NewGuestAct extends SimActivity
     @Override
     public void action()
     {
-
-//        waitDuration(10000);
         while (true)
         {
             addNewGuest();
@@ -20,7 +18,6 @@ public class NewGuestAct extends SimActivity
             {
                 System.out.println("Nowi goscie stop");
                 waitDuration(578);
-
             }
 
             if (counter.getAndIncrement() == 25)

@@ -36,5 +36,6 @@ public class TakingAct extends SimActivity
                 }
             }
         }
+        System.out.println(waiter.debugMessageNarrow() + " fajrant");
     }
 }
