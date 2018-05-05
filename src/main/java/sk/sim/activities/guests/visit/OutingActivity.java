@@ -7,14 +7,9 @@ import java.util.concurrent.CountDownLatch;
 
 public class OutingActivity extends GuestVisitActivity
 {
-    public OutingActivity(GuestSimObject guest, CountDownLatch countDownLatch)
+    public OutingActivity(GuestSimObject guest, Semaphore semaphore)
     {
-        super(guest, countDownLatch);
-    }
-
-    public OutingActivity(GuestSimObject guest, CountDownLatch countDownLatch, Semaphore semaphore)
-    {
-        super(guest, countDownLatch, semaphore);
+        super(guest, semaphore);
     }
 
     @Override
@@ -24,7 +19,6 @@ public class OutingActivity extends GuestVisitActivity
         waitDuration(100);
         guest.out();
 
-        countDownLatch.countDown();
         semaphore.signal();
         System.out.println(guest.debugMessage() + "Gość wyszedł");
     }

@@ -7,14 +7,9 @@ import java.util.concurrent.CountDownLatch;
 
 public class EatingActivity extends GuestVisitActivity
 {
-    public EatingActivity(GuestSimObject guest, CountDownLatch countDownLatch)
+    public EatingActivity(GuestSimObject guest, Semaphore semaphore)
     {
-        super(guest, countDownLatch);
-    }
-
-    public EatingActivity(GuestSimObject guest, CountDownLatch countDownLatch, Semaphore semaphore)
-    {
-        super(guest, countDownLatch, semaphore);
+        super(guest, semaphore);
     }
 
     @Override
@@ -24,13 +19,13 @@ public class EatingActivity extends GuestVisitActivity
         int time = random.nextInt(1300);
         waitDuration(time);
 
-        countDownLatch.countDown();
+
 //        semaphore.signal();
 
 
         System.out.println(guest.debugMessage() + "Skonczyl jesc.");
 
-        RestActivity activity = new RestActivity(guest, countDownLatch, semaphore);
+        RestActivity activity = new RestActivity(guest, semaphore);
         callActivity(guest, activity);
 
 //        semaphore.wait(activity);

@@ -1,4 +1,4 @@
-package sk.sim.activities;
+package sk.sim.activities.guests;
 
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
