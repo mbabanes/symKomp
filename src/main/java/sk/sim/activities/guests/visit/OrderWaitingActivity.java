@@ -7,29 +7,22 @@ import java.util.concurrent.CountDownLatch;
 
 public class OrderWaitingActivity extends GuestVisitActivity
 {
-    public OrderWaitingActivity(GuestSimObject guest, CountDownLatch countDownLatch)
+    public OrderWaitingActivity(GuestSimObject guest, Semaphore semaphore)
     {
-        super(guest, countDownLatch);
-    }
-
-    public OrderWaitingActivity(GuestSimObject guest, CountDownLatch countDownLatch, Semaphore semaphore)
-    {
-        super(guest, countDownLatch, semaphore);
+        super(guest, semaphore);
     }
 
     @Override
     public void action()
     {
-        System.out.println(guest.debugMessage() + "Oczekuje na zamowienie");
-        int time = random.nextInt(2000);
+        long time = guest.getOrder().getPreparingTime();
+        System.out.println(guest.debugMessage() + "Oczekuje na zamowienie (" + time + ").");
         waitDuration(time);
 
-        countDownLatch.countDown();
-//        semaphore.signal();
+
         System.out.println(guest.debugMessage() + "Dostał zamowienie");
 
-        EatingActivity activity = new EatingActivity(guest, countDownLatch, semaphore);
+        EatingActivity activity = new EatingActivity(guest, semaphore);
         callActivity(guest, activity);
-//        semaphore.wait(activity);
     }
 }

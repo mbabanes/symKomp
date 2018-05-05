@@ -14,6 +14,7 @@ public class GuestSimObject extends SimObject
     private WaiterSimObject waiterSimObject;
     private int time;
 
+    private Order order;
 
     public GuestSimObject(int time)
     {
@@ -39,6 +40,10 @@ public class GuestSimObject extends SimObject
                 '}';
     }
 
+    public void setOrder(Order order)
+    {
+        this.order = order;
+    }
 
     public String debugMessage()
     {

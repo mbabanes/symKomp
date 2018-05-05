@@ -3,10 +3,9 @@ package sk.sim;
 import deskit.SimActivity;
 import deskit.SimObject;
 import lombok.Getter;
-import sk.sim.activities.NewGuestComingActivity;
-import sk.sim.activities.TakingGuestActivity;
-import sk.sim.objects.GuestSimObject;
-import sk.sim.objects.WaiterSimObject;
+import sk.sim.activities.guests.NewGuestComingActivity;
+import sk.sim.activities.waiters.TakingGuestActivity;
+import sk.sim.objects.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,6 +16,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class RestaurantSimObject extends SimObject
 {
     private static final Random random = new Random();
+
+    public static int MEALS_NUMBER = 10;
+    public static int DRINKS_NUMBER = 5;
 
     public static int WAITERS_NUMBER = 3;
     public static AtomicBoolean opened = new AtomicBoolean(true);
@@ -33,6 +35,7 @@ public class RestaurantSimObject extends SimObject
 
     public RestaurantSimObject()
     {
+        prepareMealsAndDrinks();
         prepareFirstGuests();
         waitersInitialization();
 
@@ -42,6 +45,19 @@ public class RestaurantSimObject extends SimObject
         this.callWaiters();
     }
 
+
+    private void prepareMealsAndDrinks()
+    {
+        for(int i = 0; i < MEALS_NUMBER; i++)
+        {
+            Menu.addMeal(new Meal());
+        }
+
+        for(int i = 0; i < DRINKS_NUMBER; i++)
+        {
+            Menu.addDrink(new Drink());
+        }
+    }
 
     private void prepareFirstGuests()
     {
