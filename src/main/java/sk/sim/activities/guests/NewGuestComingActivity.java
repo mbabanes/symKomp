@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class NewGuestComingActivity extends SimActivity
 {
-    public static final int MAX_GUEST_NUMBER = 20;
+
     private static Random random = new Random();
 
     private AtomicInteger counter = new AtomicInteger();
@@ -29,7 +29,7 @@ public class NewGuestComingActivity extends SimActivity
             }
 
 
-            if ( counter.getAndIncrement() > MAX_GUEST_NUMBER )
+            if ( counter.getAndIncrement() > RestaurantSimObject.GUEST_NUMBER )
             {
                 while( RestaurantSimObject.expectantGuestAreInRestaurant() )
                 {
