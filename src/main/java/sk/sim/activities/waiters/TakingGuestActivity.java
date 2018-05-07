@@ -26,7 +26,7 @@ public class TakingGuestActivity extends SimActivity
         {
             if ( expectantGuestAreNotInRestaurant() )
             {
-                takeShortBrake();
+                takeShortBreak();
             }
             else
             {
@@ -49,7 +49,7 @@ public class TakingGuestActivity extends SimActivity
         return ! RestaurantSimObject.expectantGuestAreInRestaurant();
     }
 
-    private void takeShortBrake()
+    private void takeShortBreak()
     {
         waitDuration(100);
     }
