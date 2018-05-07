@@ -19,19 +19,21 @@ public class PlacingOrderActivity extends GuestVisitActivity
     {
         System.out.println(guest.debugMessage() + "Składa zamowienie");
 
-
-        int time = designateWaitingTime();
-        waitDuration(time);
-
+        browseMenu();
         placeOrder();
 
         System.out.println(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
-        OrderWaitingActivity activity = new OrderWaitingActivity(guest, semaphore);
-        callActivity(guest, activity);
+        startWaitingForOrder();
     }
 
-    private int designateWaitingTime()
+    private void browseMenu()
+    {
+        int time = designateWaitingTimeOfPlacingOrder();
+        waitDuration(time);
+    }
+
+    private int designateWaitingTimeOfPlacingOrder()
     {
         return (RestaurantSimObject.MEALS_NUMBER + RestaurantSimObject.DRINKS_NUMBER) * random.nextInt(15);
     }
@@ -44,6 +46,12 @@ public class PlacingOrderActivity extends GuestVisitActivity
         chooseMeals(order);
 
         guest.setOrder(order);
+    }
+
+    private void startWaitingForOrder()
+    {
+        OrderWaitingActivity activity = new OrderWaitingActivity(guest, semaphore);
+        callActivity(guest, activity);
     }
 
     private void chooseDrinks(Order order)
