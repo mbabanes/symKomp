@@ -6,10 +6,9 @@ import lombok.Getter;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.objects.*;
-import sk.sim.utill.Context;
-import sk.sim.utill.Randomizer;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -17,39 +16,34 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Getter
 public class RestaurantSimObject extends SimObject
 {
-    private static final Randomizer random = Context.getRandomizer();
-
+    public static int GUEST_NUMBER = 20;
+    public static int WAITERS_NUMBER = 3;
     public static int MEALS_NUMBER = 10;
     public static int DRINKS_NUMBER = 5;
-    public static int GUEST_NUMBER = 20;
 
-    public static int WAITERS_NUMBER = 3;
     public static AtomicBoolean opened = new AtomicBoolean(true);
-
 
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
 
     private static Map<WaiterSimObject, TakingGuestActivity> waiters = new ConcurrentHashMap<>();
 
-    public static List<GuestSimObject> servedGuests = Collections.synchronizedList(new ArrayList<>());
 
-
-    private SimActivity newGuest;
+    private SimActivity newGuestComingActivity;
 
     public RestaurantSimObject()
     {
-        prepareMealsAndDrinks();
+        initMealsAndDrinks();
         prepareFirstGuests();
         waitersInitialization();
 
-        newGuest = new NewGuestComingActivity();
+        newGuestComingActivity = new NewGuestComingActivity();
 
-        SimActivity.callActivity(this, newGuest);
+        SimActivity.callActivity(this, newGuestComingActivity);
         this.callWaiters();
     }
 
 
-    private void prepareMealsAndDrinks()
+    private void initMealsAndDrinks()
     {
         for(int i = 0; i < MEALS_NUMBER; i++)
         {
