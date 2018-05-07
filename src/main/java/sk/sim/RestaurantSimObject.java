@@ -96,4 +96,9 @@ public class RestaurantSimObject extends SimObject
     {
         opened.set(false);
     }
+
+    public static void debugMainProperties()
+    {
+        System.out.println("Restaruant main properties:\nGuests:" + GUEST_NUMBER + " | Waiters:" + WAITERS_NUMBER + " | Meals:" + MEALS_NUMBER + " | Drinks:" + DRINKS_NUMBER + "\n");
+    }
 }

@@ -1,10 +1,12 @@
 package sk.sim.gui.controllers;
 
-import deskit.SimManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import sk.sim.RestaurantSimObject;
+import javafx.util.converter.NumberStringConverter;
+import sk.sim.gui.model.RestaurantFx;
+import sk.sim.gui.model.Simulation;
 
 public class MainWindowController
 {
@@ -20,20 +22,36 @@ public class MainWindowController
     @FXML
     private TextField drinksNumber;
 
+    @FXML
+    private Button startButton;
+
+
+    private Simulation simulation;
+
+    @FXML
+    public void initialize()
+    {
+        simulation = new Simulation();
+
+        bindTextFields();
+    }
 
     @FXML
     public void startSimulationOnAction()
     {
-        RestaurantSimObject restaurantSimObject = new RestaurantSimObject();
+        simulation.start();
+        startButton.setDisable(true);
+    }
 
-//        SimActivity.callActivity(restaurantSimObject, restaurantSimObject.getNewGuest());
+    private void bindTextFields()
+    {
+        RestaurantFx restaurantFx = simulation.getRestaurantFx();
 
-        SimManager.getSimManager().setStopTime(200000000);
 
-        System.out.println("Symulacja");
-        SimManager.getSimManager().startSimulation();
-        System.out.println("Koniec");
-
-        System.out.println(RestaurantSimObject.expectantGuests.size());
+        NumberStringConverter converter = new NumberStringConverter();
+        guestsNumber.textProperty().bindBidirectional(restaurantFx.guestNumberIntegerProperty(), converter);
+        waitersNumber.textProperty().bindBidirectional(restaurantFx.waitersNumberIntegerProperty(), converter);
+        mealsNumber.textProperty().bindBidirectional(restaurantFx.mealsNumberIntegerProperty(), converter);
+        drinksNumber.textProperty().bindBidirectional(restaurantFx.drinksNumberIntegerProperty(), converter);
     }
 }
