@@ -1,22 +1,27 @@
 package sk.sim;
 
-import deskit.SimActivity;
-import deskit.SimManager;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
-public class Main
+public class Main extends Application
 {
     public static void main(String[] args)
     {
-        RestaurantSimObject restaurantSimObject = new RestaurantSimObject();
+        launch(args);
+    }
 
-//        SimActivity.callActivity(restaurantSimObject, restaurantSimObject.getNewGuest());
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        Pane pane = FXMLLoader.load(Main.class.getResource("/fxml/MainWindow.fxml"));
 
-        SimManager.getSimManager().setStopTime(200000000);
+        Scene scene = new Scene(pane);
 
-        System.out.println("Symulacja");
-        SimManager.getSimManager().startSimulation();
-        System.out.println("Koniec");
-
-        System.out.println(RestaurantSimObject.expectantGuests.size());
+        primaryStage.setTitle("Symulacja restauracji");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
