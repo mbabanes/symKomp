@@ -7,8 +7,7 @@ import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.objects.*;
 
-import java.util.Deque;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -100,5 +99,10 @@ public class RestaurantSimObject extends SimObject
     public static void debugMainProperties()
     {
         System.out.println("Restaruant main properties:\nGuests:" + GUEST_NUMBER + " | Waiters:" + WAITERS_NUMBER + " | Meals:" + MEALS_NUMBER + " | Drinks:" + DRINKS_NUMBER + "\n");
+    }
+
+    public static Set<WaiterSimObject> getWaiters()
+    {
+        return waiters.keySet();
     }
 }

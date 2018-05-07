@@ -34,7 +34,7 @@ public class TakingGuestActivity extends SimActivity
                 {
                     GuestSimObject guest = RestaurantSimObject.expectantGuests.removeFirst();
                     invite(guest);
-                    waitDuration(100);
+//                    waitDuration(100);
                 }
                 else
                 {
@@ -51,7 +51,7 @@ public class TakingGuestActivity extends SimActivity
 
     private void takeShortBrake()
     {
-        waitDuration(200);
+        waitDuration(100);
     }
 
 

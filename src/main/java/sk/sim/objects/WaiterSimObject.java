@@ -14,6 +14,8 @@ public class WaiterSimObject extends SimObject
 
     private int id = ID.getAndIncrement();
 
+    private AtomicInteger guestsNumber = new AtomicInteger(0);
+
     private AtomicInteger currentGuestNumber = new AtomicInteger();
 
     public boolean isFree()
@@ -27,12 +29,18 @@ public class WaiterSimObject extends SimObject
     public void takeGuest()
     {
         currentGuestNumber.getAndIncrement();
+        guestsNumber.incrementAndGet();
     }
 
 
     public String debugMessage()
     {
         return "[Kelner " + id + "]:";
+    }
+
+    public int getGuestNumber()
+    {
+        return guestsNumber.get();
     }
 
 }

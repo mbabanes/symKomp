@@ -2,6 +2,9 @@ package sk.sim.gui.model;
 
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
+import sk.sim.objects.WaiterSimObject;
+
+import java.util.Set;
 
 public class Simulation
 {
@@ -27,7 +30,7 @@ public class Simulation
 
         RestaurantSimObject.debugMainProperties();
 
-        RestaurantSimObject restaurantSimObject = new RestaurantSimObject();
+        restaurantSimObject = new RestaurantSimObject();
 
 //        SimActivity.callActivity(restaurantSimObject, restaurantSimObject.getNewGuestCommingActivity());
 
@@ -38,5 +41,18 @@ public class Simulation
         System.out.println("Koniec");
 
         System.out.println(RestaurantSimObject.expectantGuests.size());
+
+        waitersSatistic();
+    }
+
+    private void waitersSatistic()
+    {
+        Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
+        System.out.println("\nStatystyki kelenrow:");
+        waiters.forEach(waiter ->
+                {
+                    System.out.println(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
+                }
+        );
     }
 }
