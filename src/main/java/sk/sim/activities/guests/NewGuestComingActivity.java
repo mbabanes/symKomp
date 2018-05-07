@@ -44,7 +44,7 @@ public class NewGuestComingActivity extends SimActivity
 
     private void addGuest()
     {
-        GuestSimObject guest = new GuestSimObject(random.nextInt(2300));
+        GuestSimObject guest = new GuestSimObject();
         RestaurantSimObject.expectantGuests.addLast(guest);
         System.out.println("Nowy gosc w kolejce: " + guest);
     }

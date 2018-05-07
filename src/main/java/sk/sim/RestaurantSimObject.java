@@ -6,6 +6,8 @@ import lombok.Getter;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.objects.*;
+import sk.sim.utill.Context;
+import sk.sim.utill.Randomizer;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Getter
 public class RestaurantSimObject extends SimObject
 {
-    private static final Random random = new Random();
+    private static final Randomizer random = Context.getRandomizer();
 
     public static int MEALS_NUMBER = 10;
     public static int DRINKS_NUMBER = 5;
@@ -61,13 +63,12 @@ public class RestaurantSimObject extends SimObject
 
     private void prepareFirstGuests()
     {
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
-        expectantGuests.add(new GuestSimObject(random.nextInt(2300)));
+        expectantGuests.add(new GuestSimObject());
+        expectantGuests.add(new GuestSimObject());
+        expectantGuests.add(new GuestSimObject());
+        expectantGuests.add(new GuestSimObject());
+        expectantGuests.add(new GuestSimObject());
+        expectantGuests.add(new GuestSimObject());
     }
 
     private void waitersInitialization()

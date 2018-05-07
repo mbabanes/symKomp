@@ -16,10 +16,10 @@ public class GuestSimObject extends SimObject
 
     private Order order;
 
-    public GuestSimObject(int time)
+    public GuestSimObject()
     {
-        this.time = time;
     }
+
 
     public void setWaiter(WaiterSimObject waiterSimObject)
     {
