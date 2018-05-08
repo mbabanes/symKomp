@@ -3,6 +3,7 @@ package sk.sim.activities.guests;
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.utill.Logger;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,7 +25,7 @@ public class NewGuestComingActivity extends SimActivity
 
             if (RestaurantSimObject.expectantGuests.size() > 6)
             {
-                System.out.println("\nNowi goscie stop\n");
+                Logger.log("\nNowi goscie pause\n");
                 waitDuration(10000);
             }
 
@@ -46,6 +47,6 @@ public class NewGuestComingActivity extends SimActivity
     {
         GuestSimObject guest = new GuestSimObject();
         RestaurantSimObject.expectantGuests.addLast(guest);
-        System.out.println("Nowy gosc w kolejce: " + guest);
+        Logger.log("Nowy gosc w kolejce: " + guest);
     }
 }

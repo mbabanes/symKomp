@@ -5,6 +5,7 @@ import sk.sim.RestaurantSimObject;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
 import sk.sim.objects.Order;
+import sk.sim.utill.Logger;
 
 
 public class PlacingOrderActivity extends GuestVisitActivity
@@ -17,12 +18,12 @@ public class PlacingOrderActivity extends GuestVisitActivity
     @Override
     public void action()
     {
-        System.out.println(guest.debugMessage() + "Składa zamowienie");
+        Logger.log(guest.debugMessage() + "Składa zamowienie");
 
         browseMenu();
         placeOrder();
 
-        System.out.println(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
+        Logger.log(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
         startWaitingForOrder();
     }

@@ -1,12 +1,13 @@
 package sk.sim.gui.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.converter.NumberStringConverter;
 import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
+import sk.sim.utill.Logger;
 
 public class MainWindowController
 {
@@ -25,6 +26,9 @@ public class MainWindowController
     @FXML
     private Button startButton;
 
+    @FXML
+    private TextArea logTextArea;
+
 
     private Simulation simulation;
 
@@ -32,6 +36,8 @@ public class MainWindowController
     public void initialize()
     {
         simulation = new Simulation();
+
+        Logger.loggerr = logTextArea;
 
         bindTextFields();
     }

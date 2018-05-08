@@ -5,6 +5,7 @@ import sk.sim.RestaurantSimObject;
 import sk.sim.activities.guests.GuestActivity;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.WaiterSimObject;
+import sk.sim.utill.Logger;
 
 
 public class TakingGuestActivity extends SimActivity
@@ -19,8 +20,10 @@ public class TakingGuestActivity extends SimActivity
     @Override
     public void action()
     {
-        System.out.print("\n" + debugMessage());
-        System.out.println("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
+        Logger.log("\n" + debugMessage());
+
+//        System.out.print("\n" + debugMessage());
+        Logger.log("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
         while ( RestaurantSimObject.isOpened() )
         {
@@ -57,7 +60,7 @@ public class TakingGuestActivity extends SimActivity
 
     private void invite(GuestSimObject guest)
     {
-        System.out.println(debugMessage() + "Wzial goscia nr: " + guest.getId());
+        Logger.log(debugMessage() + "Wzial goscia nr: " + guest.getId());
         guest.setWaiter(waiter);
 
         waiter.takeGuest();

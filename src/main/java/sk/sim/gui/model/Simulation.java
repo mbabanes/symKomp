@@ -3,6 +3,7 @@ package sk.sim.gui.model;
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
 import sk.sim.objects.WaiterSimObject;
+import sk.sim.utill.Logger;
 
 import java.util.Set;
 
@@ -36,22 +37,22 @@ public class Simulation
 
         SimManager.getSimManager().setStopTime(200000000);
 
-        System.out.println("Symulacja");
+        Logger.log("Symulacja");
         SimManager.getSimManager().startSimulation();
-        System.out.println("Koniec");
+        Logger.log("Koniec");
 
-        System.out.println(RestaurantSimObject.expectantGuests.size());
+        Logger.log(Integer.toString(RestaurantSimObject.expectantGuests.size()));
 
-        waitersSatistic();
+        waiterStatistics();
     }
 
-    private void waitersSatistic()
+    private void waiterStatistics()
     {
         Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
-        System.out.println("\nStatystyki kelenrow:");
+        Logger.log("\nStatystyki kelenrow:");
         waiters.forEach(waiter ->
                 {
-                    System.out.println(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
+                    Logger.log(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
                 }
         );
     }

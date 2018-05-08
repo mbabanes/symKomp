@@ -2,6 +2,7 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.utill.Logger;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -16,11 +17,11 @@ public class OrderWaitingActivity extends GuestVisitActivity
     public void action()
     {
         long time = guest.getOrder().getPreparingTime();
-        System.out.println(guest.debugMessage() + "Oczekuje na zamowienie (" + time + ").");
+        Logger.log(guest.debugMessage() + "Oczekuje na zamowienie (" + time + ").");
         waitDuration(time);
 
 
-        System.out.println(guest.debugMessage() + "Dostał zamowienie");
+        Logger.log(guest.debugMessage() + "Dostał zamowienie");
 
         EatingActivity activity = new EatingActivity(guest, semaphore);
         callActivity(guest, activity);

@@ -4,6 +4,7 @@ import deskit.SimActivity;
 import deskit.synchronizers.Semaphore;
 import sk.sim.activities.guests.visit.PlacingOrderActivity;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.utill.Logger;
 
 public class GuestActivity extends SimActivity
 {
@@ -20,7 +21,7 @@ public class GuestActivity extends SimActivity
     @Override
     public void action()
     {
-        System.out.println(guest.debugMessage() + " Rozpoczyna wizytę");
+        Logger.log(guest.debugMessage() + " Rozpoczyna wizytę");
 
         PlacingOrderActivity activity = new PlacingOrderActivity(guest, semaphore);
         callActivity(guest, activity);
@@ -28,6 +29,6 @@ public class GuestActivity extends SimActivity
         semaphore.wait(activity);
         waitOnSemaphore(semaphore);
 
-        System.out.println(guest.debugMessage() + " Zakonczl wizytę");
+        Logger.log(guest.debugMessage() + " Zakonczl wizytę");
     }
 }

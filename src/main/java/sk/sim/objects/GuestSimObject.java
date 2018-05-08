@@ -2,6 +2,7 @@ package sk.sim.objects;
 
 import deskit.SimObject;
 import lombok.Getter;
+import sk.sim.utill.Logger;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,7 +29,7 @@ public class GuestSimObject extends SimObject
 
     public void out()
     {
-        System.out.println("Gość[" + id + "]: Wychodzi (" + waiterSimObject.debugMessage() + ")");
+        Logger.log("Gość[" + id + "]: Wychodzi (" + waiterSimObject.debugMessage() + ")");
         waiterSimObject.getCurrentGuestNumber().decrementAndGet();
     }
 

@@ -2,6 +2,7 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.utill.Logger;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -15,7 +16,7 @@ public class EatingActivity extends GuestVisitActivity
     @Override
     public void action()
     {
-        System.out.println(guest.debugMessage() + "Je");
+        Logger.log(guest.debugMessage() + "Je");
         int time = random.nextInt(1300);
         waitDuration(time);
 
@@ -23,7 +24,7 @@ public class EatingActivity extends GuestVisitActivity
 //        semaphore.signal();
 
 
-        System.out.println(guest.debugMessage() + "Skonczyl jesc.");
+        Logger.log(guest.debugMessage() + "Skonczyl jesc.");
 
         RestActivity activity = new RestActivity(guest, semaphore);
         callActivity(guest, activity);

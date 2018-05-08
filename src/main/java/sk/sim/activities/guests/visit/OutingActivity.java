@@ -2,6 +2,7 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.utill.Logger;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -15,11 +16,11 @@ public class OutingActivity extends GuestVisitActivity
     @Override
     public void action()
     {
-        System.out.println(guest.debugMessage() + "Gość wychodzi");
+        Logger.log(guest.debugMessage() + "Gość wychodzi");
         waitDuration(100);
         guest.out();
 
         semaphore.signal();
-        System.out.println(guest.debugMessage() + "Gość wyszedł");
+        Logger.log(guest.debugMessage() + "Gość wyszedł");
     }
 }
