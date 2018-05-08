@@ -28,4 +28,14 @@ public class Menu
     {
         meals.add(meal);
     }
+
+    public static List<Drink> getDrinks()
+    {
+        return drinks;
+    }
+
+    public static List<Meal> getMeals()
+    {
+        return meals;
+    }
 }

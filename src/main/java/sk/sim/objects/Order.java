@@ -15,6 +15,7 @@ public class Order
         meals.add(meal);
 
         preparingTime += meal.getPreparingTime();
+        meal.increment();
 
     }
 
@@ -22,6 +23,7 @@ public class Order
     {
         drinks.add(drink);
         preparingTime += drink.getPreparingTime();
+        drink.increment();
     }
 
     public long getPreparingTime()
