@@ -2,9 +2,13 @@ package sk.sim.gui.model;
 
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
+import sk.sim.objects.Drink;
+import sk.sim.objects.Meal;
+import sk.sim.objects.Menu;
 import sk.sim.objects.WaiterSimObject;
 import sk.sim.utill.Logger;
 
+import java.util.List;
 import java.util.Set;
 
 public class Simulation
@@ -44,6 +48,7 @@ public class Simulation
         Logger.log(Integer.toString(RestaurantSimObject.expectantGuests.size()));
 
         waiterStatistics();
+        mealsAndDrinksStatistics();
     }
 
     private void waiterStatistics()
@@ -55,5 +60,18 @@ public class Simulation
                     Logger.log(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
                 }
         );
+    }
+
+    private void mealsAndDrinksStatistics()
+    {
+        Logger.log("\nSatatystyki zamowien:");
+
+        Logger.log("Dania:");
+        List<Meal> meals = Menu.getMeals();
+        meals.forEach(meal -> Logger.log("[Meal " + meal.getId() + "] zamowiono: " + meal.getCounter()));
+
+        Logger.log("Napoje:");
+        List<Drink> drinks = Menu.getDrinks();
+        drinks.forEach(drink -> Logger.log("[Drink " + drink.getId() + "] zamowiono: " + drink.getCounter()));
     }
 }
