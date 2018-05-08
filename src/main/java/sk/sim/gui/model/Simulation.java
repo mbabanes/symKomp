@@ -47,31 +47,57 @@ public class Simulation
 
         Logger.log(Integer.toString(RestaurantSimObject.expectantGuests.size()));
 
-        waiterStatistics();
-        mealsAndDrinksStatistics();
+//        waiterStatistics();
+//        mealsAndDrinksStatistics();
     }
 
-    private void waiterStatistics()
+    public String waiterStatistics()
     {
         Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
-        Logger.log("\nStatystyki kelenrow:");
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+//        Logger.log("\nStatystyki kelenrow:");
         waiters.forEach(waiter ->
                 {
-                    Logger.log(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
+//                    Logger.log(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
+
+                    stringBuilder.append(waiter.debugMessage())
+                            .append(" obsłużył:")
+                            .append(waiter.getGuestNumber())
+                            .append("\n");
                 }
         );
+
+        return stringBuilder.toString();
     }
 
-    private void mealsAndDrinksStatistics()
+    public String mealsAndDrinksStatistics()
     {
-        Logger.log("\nSatatystyki zamowien:");
+        StringBuilder stringBuilder = new StringBuilder();
 
-        Logger.log("Dania:");
+//        Logger.log("\nSatatystyki zamowien:");
+
+        stringBuilder.append("Dania:\n");
         List<Meal> meals = Menu.getMeals();
-        meals.forEach(meal -> Logger.log("[Meal " + meal.getId() + "] zamowiono: " + meal.getCounter()));
+        meals.forEach(meal -> {
+            stringBuilder.append("[Meal ")
+                    .append(meal.getId())
+                    .append("] zamowiono: ")
+                    .append(meal.getCounter())
+                    .append('\n');
+        });
 
-        Logger.log("Napoje:");
+        stringBuilder.append("Napoje:\n");
         List<Drink> drinks = Menu.getDrinks();
-        drinks.forEach(drink -> Logger.log("[Drink " + drink.getId() + "] zamowiono: " + drink.getCounter()));
+        drinks.forEach(drink ->{
+            stringBuilder.append("[Drink ")
+                    .append(drink.getId())
+                    .append("] zamowiono: ")
+                    .append(drink.getCounter())
+                    .append('\n');
+        });
+
+        return stringBuilder.toString();
     }
 }

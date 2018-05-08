@@ -47,6 +47,12 @@ public class MainWindowController
     {
         simulation.start();
         startButton.setDisable(true);
+
+        logTextArea.appendText("\nStatystyki kelnerów:\n");
+        logTextArea.appendText(simulation.waiterStatistics());
+
+        logTextArea.appendText("\nStatystyki zamówień:\n");
+        logTextArea.appendText(simulation.mealsAndDrinksStatistics());
     }
 
     private void bindTextFields()
