@@ -28,46 +28,17 @@ public class Simulation
 
     public void start()
     {
-        RestaurantSimObject.GUEST_NUMBER = restaurantFx.getGuestNumber();
-        RestaurantSimObject.WAITERS_NUMBER = restaurantFx.getWaitersNumber();
-        RestaurantSimObject.MEALS_NUMBER = restaurantFx.getMealsNumber();
-        RestaurantSimObject.DRINKS_NUMBER = restaurantFx.getDrinksNumber();
-
-        RestaurantSimObject.debugMainProperties();
+        setMainPropertiesOfSimulation();
 
         restaurantSimObject = new RestaurantSimObject();
 
-//        SimActivity.callActivity(restaurantSimObject, restaurantSimObject.getNewGuestCommingActivity());
 
-        SimManager.getSimManager().setStopTime(200000000);
-
-        Logger.log("Symulacja");
-        SimManager.getSimManager().startSimulation();
-        Logger.log("Koniec");
-
-        Logger.log(Integer.toString(RestaurantSimObject.expectantGuests.size()));
-
-//        waiterStatistics();
-//        mealsAndDrinksStatistics();
+        startSimulation();
     }
 
     public String waiterStatistics()
     {
-        Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-//        Logger.log("\nStatystyki kelenrow:");
-        waiters.forEach(waiter ->
-                {
-//                    Logger.log(waiter.debugMessage() + " obsłużył:" + waiter.getGuestNumber());
-
-                    stringBuilder.append(waiter.debugMessage())
-                            .append(" obsłużył:")
-                            .append(waiter.getGuestNumber())
-                            .append("\n");
-                }
-        );
+        StringBuilder stringBuilder = prepareWaitersStatistic();
 
         return stringBuilder.toString();
     }
@@ -76,8 +47,50 @@ public class Simulation
     {
         StringBuilder stringBuilder = new StringBuilder();
 
-//        Logger.log("\nSatatystyki zamowien:");
+        prepareMealsStatsAndSaveIn(stringBuilder);
+        prepareDrinksStatsAndSaveIn(stringBuilder);
 
+
+        return stringBuilder.toString();
+    }
+
+    private void startSimulation()
+    {
+        Logger.log("Symulacja");
+        SimManager.getSimManager().startSimulation();
+        Logger.log("Koniec");
+
+        Logger.log("Gości w kolejce: " + Integer.toString(RestaurantSimObject.expectantGuests.size()));
+    }
+
+    private void setMainPropertiesOfSimulation()
+    {
+        RestaurantSimObject.GUEST_NUMBER = restaurantFx.getGuestNumber();
+        RestaurantSimObject.WAITERS_NUMBER = restaurantFx.getWaitersNumber();
+        RestaurantSimObject.MEALS_NUMBER = restaurantFx.getMealsNumber();
+        RestaurantSimObject.DRINKS_NUMBER = restaurantFx.getDrinksNumber();
+
+        RestaurantSimObject.debugMainProperties();
+        SimManager.getSimManager().setStopTime(200000000);
+    }
+
+    private StringBuilder prepareWaitersStatistic()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
+        waiters.forEach(waiter ->
+                {
+                    stringBuilder.append(waiter.debugMessage())
+                            .append(" obsłużył:")
+                            .append(waiter.getGuestNumber())
+                            .append("\n");
+                }
+        );
+        return stringBuilder;
+    }
+
+    private void prepareMealsStatsAndSaveIn(StringBuilder stringBuilder)
+    {
         stringBuilder.append("Dania:\n");
         List<Meal> meals = Menu.getMeals();
         meals.forEach(meal -> {
@@ -87,7 +100,10 @@ public class Simulation
                     .append(meal.getCounter())
                     .append('\n');
         });
+    }
 
+    private void prepareDrinksStatsAndSaveIn(StringBuilder stringBuilder)
+    {
         stringBuilder.append("Napoje:\n");
         List<Drink> drinks = Menu.getDrinks();
         drinks.forEach(drink ->{
@@ -97,7 +113,5 @@ public class Simulation
                     .append(drink.getCounter())
                     .append('\n');
         });
-
-        return stringBuilder.toString();
     }
 }
