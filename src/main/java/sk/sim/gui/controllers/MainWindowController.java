@@ -29,6 +29,9 @@ public class MainWindowController
     @FXML
     private TextArea logTextArea;
 
+    @FXML
+    private TextArea statsTextArea;
+
 
     private Simulation simulation;
 
@@ -48,11 +51,11 @@ public class MainWindowController
         simulation.start();
         startButton.setDisable(true);
 
-        logTextArea.appendText("\nStatystyki kelnerów:\n");
-        logTextArea.appendText(simulation.waiterStatistics());
+        statsTextArea.appendText("Statystyki kelnerów:\n");
+        statsTextArea.appendText(simulation.waiterStatistics());
 
-        logTextArea.appendText("\nStatystyki zamówień:\n");
-        logTextArea.appendText(simulation.mealsAndDrinksStatistics());
+        statsTextArea.appendText("\nStatystyki zamówień:\n");
+        statsTextArea.appendText(simulation.mealsAndDrinksStatistics());
     }
 
     private void bindTextFields()
