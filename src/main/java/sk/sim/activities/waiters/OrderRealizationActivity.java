@@ -26,11 +26,11 @@ public class OrderRealizationActivity extends SimActivity
         OrderNote orderNote = new OrderNote(order, semaphore);
 
         OrderQueue.addOrder(orderNote);
-        Logger.log("Zamówienie[" + order.getId() + "]: Przekazane do kolejki realizacji");
+        Logger.log(order.debugMessage() +   "Przekazane do kolejki realizacji");
         semaphore.wait(this);
         waitOnSemaphore(semaphore);
-        Logger.log("Zamówienie[" + order.getId() + "]: Semafor zwolniony");
-        callActivity(order.getGuestSimObject().getWaiterSimObject(), new BringingOrderForGuest(order, this.semaphore));
-        Logger.log("Zamówienie[" + order.getId() + "]: Zamowienie zrealizowane");
+        Logger.log(order.debugMessage() +  "Gotowe");
+        callActivity(order.getGuestSimObject().getWaiterSimObject(), new BringingOrderForGuestActivity(order, this.semaphore));
+        Logger.log(order.debugMessage() +   "Zamowienie zrealizowane");
     }
 }

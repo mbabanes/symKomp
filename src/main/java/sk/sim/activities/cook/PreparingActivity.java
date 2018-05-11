@@ -24,10 +24,10 @@ public class PreparingActivity extends SimActivity
     @Override
     public void action()
     {
-        Logger.log(orderNote.getOrder().debugMessage() + "W fazie przygotowania");
+        Logger.log(cook.debugMessage() + orderNote.getOrder().debugMessage() + "W fazie przygotowania");
         waitDuration(orderNote.getOrder().getPreparingTime());
 
-        Logger.log(orderNote.getOrder().debugMessage() + "Przygotowanie skonczone.");
+        Logger.log(cook.debugMessage() + orderNote.getOrder().debugMessage() + "Przygotowywanie skonczone.");
         cook.getCurrentOrderNumber().decrementAndGet();
         orderNote.getSemaphore().signal();
     }
