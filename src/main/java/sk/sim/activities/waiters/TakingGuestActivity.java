@@ -21,11 +21,9 @@ public class TakingGuestActivity extends SimActivity
     public void action()
     {
         Logger.log("\n" + debugMessage());
-
-//        System.out.print("\n" + debugMessage());
         Logger.log("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
-        while ( RestaurantSimObject.guestsComming.get() )
+        while ( RestaurantSimObject.areNewGuestComing() )
         {
             if ( expectantGuestAreNotInRestaurant() )
             {
@@ -44,8 +42,6 @@ public class TakingGuestActivity extends SimActivity
                     waitDuration(200);
                 }
             }
-
-            System.out.println("DDD");
         }
     }
 

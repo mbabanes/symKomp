@@ -33,16 +33,13 @@ public class NewGuestComingActivity extends SimActivity
 
             if ( counter.getAndIncrement() > RestaurantSimObject.GUEST_NUMBER )
             {
-                while( RestaurantSimObject.expectantGuestAreInRestaurant()
-                        )
-
+                while( RestaurantSimObject.expectantGuestAreInRestaurant() )
                 {
                     waitDuration(1000);
-
                 }
-                RestaurantSimObject.guestsComming.set(false);
+                stopNewGuestComing();
 
-                while(OrderQueue.orders.size() != 0)
+                while(areOrdersInProgress())
                 {
                     waitDuration(1000);
                 }
@@ -58,5 +55,15 @@ public class NewGuestComingActivity extends SimActivity
         GuestSimObject guest = new GuestSimObject();
         RestaurantSimObject.expectantGuests.addLast(guest);
         Logger.log("Nowy gosc w kolejce: " + guest);
+    }
+
+    private void stopNewGuestComing()
+    {
+        RestaurantSimObject.guestsComming.set(false);
+    }
+
+    private boolean areOrdersInProgress()
+    {
+        return OrderQueue.orders.size() != 0;
     }
 }

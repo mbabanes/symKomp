@@ -114,6 +114,11 @@ public class RestaurantSimObject extends SimObject
         return opened.get();
     }
 
+    public static boolean areNewGuestComing()
+    {
+        return guestsComming.get();
+    }
+
     public static void close()
     {
         opened.set(false);
