@@ -25,6 +25,7 @@ public class RestaurantSimObject extends SimObject
 
     public static AtomicBoolean opened = new AtomicBoolean(true);
 
+    public static AtomicBoolean guestsComming = new AtomicBoolean(true);
 
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
 

@@ -28,7 +28,7 @@ public class PreparingActivity extends SimActivity
         waitDuration(orderNote.getOrder().getPreparingTime());
 
         Logger.log(orderNote.getOrder().debugMessage() + "Przygotowanie skonczone.");
-
+        cook.getCurrentOrderNumber().decrementAndGet();
         orderNote.getSemaphore().signal();
     }
 }

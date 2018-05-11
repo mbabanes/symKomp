@@ -2,6 +2,7 @@ package sk.sim.activities.guests;
 
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
+import sk.sim.activities.cook.OrderQueue;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.utill.Logger;
 
@@ -32,7 +33,16 @@ public class NewGuestComingActivity extends SimActivity
 
             if ( counter.getAndIncrement() > RestaurantSimObject.GUEST_NUMBER )
             {
-                while( RestaurantSimObject.expectantGuestAreInRestaurant() )
+                while( RestaurantSimObject.expectantGuestAreInRestaurant()
+                        )
+
+                {
+                    waitDuration(1000);
+
+                }
+                RestaurantSimObject.guestsComming.set(false);
+
+                while(OrderQueue.orders.size() != 0)
                 {
                     waitDuration(1000);
                 }

@@ -2,6 +2,7 @@ package sk.sim.gui.model;
 
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
+import sk.sim.activities.cook.OrderQueue;
 import sk.sim.objects.Drink;
 import sk.sim.objects.Meal;
 import sk.sim.objects.Menu;
@@ -59,6 +60,8 @@ public class Simulation
         Logger.log("Symulacja");
         SimManager.getSimManager().startSimulation();
         Logger.log("Koniec");
+
+        Logger.log("Dania: " + OrderQueue.orders.size());
 
         Logger.log("Gości w kolejce: " + Integer.toString(RestaurantSimObject.expectantGuests.size()));
     }
