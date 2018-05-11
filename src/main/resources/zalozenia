@@ -34,3 +34,16 @@ Gosc zostaje przyjety
     3. Je
     4. Odpoczynek
     5. Wychodzenie
+
+Skladanie zmowienia:
+    1. Kelenr zbiera zmowienie.
+    2. Odkalda do kolejki zamowien.
+    3. Jakis kucharz beirze zamowienie i reazlizuje.
+    4. Kucharz daje znac kelnreowi ze zamowienie gotowe
+    5. Kelner zanosi do goscia.
+
+
+Kucharz
+    - dostaje zamowienia do zrealizowania w kolejce (na zasadzie kto pierwszy ten lepszy (FIFO))``.
+    - kucharz moze realizowac okreslona ilosc zamowien
+    - zrealizowane zamowienie przekazywane jest do zrealizowanych zamowien.
