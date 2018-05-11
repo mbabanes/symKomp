@@ -2,9 +2,11 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.RestaurantSimObject;
+import sk.sim.activities.waiters.OrderRealizationActivity;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
-import sk.sim.objects.Order;
+import sk.sim.objects.OrderSimObject;
+import sk.sim.objects.WaiterSimObject;
 import sk.sim.utill.Logger;
 
 
@@ -25,7 +27,8 @@ public class PlacingOrderActivity extends GuestVisitActivity
 
         Logger.log(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
-        startWaitingForOrder();
+        callWaiterToRealizationOrder();
+        Logger.log(guest.debugMessage() + "Oczekuje na zamowienie.");
     }
 
     private void browseMenu()
@@ -41,7 +44,7 @@ public class PlacingOrderActivity extends GuestVisitActivity
 
     private void placeOrder()
     {
-        Order order = new Order();
+        OrderSimObject order = new OrderSimObject();
 
         chooseDrinks(order);
         chooseMeals(order);
@@ -49,13 +52,16 @@ public class PlacingOrderActivity extends GuestVisitActivity
         guest.setOrder(order);
     }
 
-    private void startWaitingForOrder()
+    private void callWaiterToRealizationOrder()
     {
-        OrderWaitingActivity activity = new OrderWaitingActivity(guest, semaphore);
-        callActivity(guest, activity);
+        WaiterSimObject waiter = guest.getWaiterSimObject();
+
+        guest.getOrder().setGuest(guest);
+
+        callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }
 
-    private void chooseDrinks(Order order)
+    private void chooseDrinks(OrderSimObject order)
     {
         int numberOfDrinksToPrepare = random.nextInt(6) + 1;
 
@@ -66,7 +72,7 @@ public class PlacingOrderActivity extends GuestVisitActivity
         }
     }
 
-    private void chooseMeals(Order order)
+    private void chooseMeals(OrderSimObject order)
     {
         int numberOfMealsToPrepare = random.nextInt(6) + 1;
         for(int i = 0; i < numberOfMealsToPrepare; i++)
