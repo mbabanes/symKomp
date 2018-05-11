@@ -3,6 +3,7 @@ package sk.sim;
 import deskit.SimActivity;
 import deskit.SimObject;
 import lombok.Getter;
+import sk.sim.activities.cook.TakingOrderActivity;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.objects.*;
@@ -20,11 +21,14 @@ public class RestaurantSimObject extends SimObject
     public static int WAITERS_NUMBER = 3;
     public static int MEALS_NUMBER = 10;
     public static int DRINKS_NUMBER = 5;
+    public static int COOKER_NUMBER = 5;
 
     public static AtomicBoolean opened = new AtomicBoolean(true);
 
+
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
 
+    private static Map<CookSimObject, TakingOrderActivity> cookres = new HashMap<>();
     private static Map<WaiterSimObject, TakingGuestActivity> waiters = new ConcurrentHashMap<>();
 
 
@@ -35,11 +39,13 @@ public class RestaurantSimObject extends SimObject
         initMealsAndDrinks();
         prepareFirstGuests();
         waitersInitialization();
+        cookerInitialization();
 
         newGuestComingActivity = new NewGuestComingActivity();
 
         SimActivity.callActivity(this, newGuestComingActivity);
         this.callWaiters();
+        this.callCookers();
     }
 
 
@@ -74,13 +80,26 @@ public class RestaurantSimObject extends SimObject
             TakingGuestActivity takingGuestActivity = new TakingGuestActivity(waiter);
             waiters.put(waiter, takingGuestActivity);
         }
+    }
 
-        Logger.log("Restaurant: Kelnerzy wystartowali.");
+    private void cookerInitialization()
+    {
+        for(int i = 0; i < COOKER_NUMBER; i++)
+        {
+            CookSimObject cook = new CookSimObject();
+            TakingOrderActivity takingOrderActivity = new TakingOrderActivity(cook);
+            cookres.put(cook, takingOrderActivity);
+        }
     }
 
     private void callWaiters()
     {
         waiters.forEach(SimActivity::callActivity);
+    }
+
+    private void callCookers()
+    {
+        cookres.forEach(SimActivity::callActivity);
     }
 
 
@@ -101,7 +120,7 @@ public class RestaurantSimObject extends SimObject
 
     public static void debugMainProperties()
     {
-        Logger.log("Restaruant main properties:\nGuests:" + GUEST_NUMBER + " | Waiters:" + WAITERS_NUMBER + " | Meals:" + MEALS_NUMBER + " | Drinks:" + DRINKS_NUMBER + "\n");
+        Logger.log("Restaruant main properties:\nGuests:" + GUEST_NUMBER + " | Waiters:" + WAITERS_NUMBER + " | Cookers:" + COOKER_NUMBER + " | Meals:" + MEALS_NUMBER + " | Drinks:" + DRINKS_NUMBER + "\n");
     }
 
     public static Set<WaiterSimObject> getWaiters()
