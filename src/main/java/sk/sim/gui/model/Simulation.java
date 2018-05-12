@@ -3,10 +3,7 @@ package sk.sim.gui.model;
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
 import sk.sim.activities.cook.OrderQueue;
-import sk.sim.objects.Drink;
-import sk.sim.objects.Meal;
-import sk.sim.objects.Menu;
-import sk.sim.objects.WaiterSimObject;
+import sk.sim.objects.*;
 import sk.sim.utill.Logger;
 
 import java.util.List;
@@ -40,6 +37,13 @@ public class Simulation
     public String waiterStatistics()
     {
         StringBuilder stringBuilder = prepareWaitersStatistic();
+
+        return stringBuilder.toString();
+    }
+
+    public String cookersStatistics()
+    {
+        StringBuilder stringBuilder = prepareCookerStatistic();
 
         return stringBuilder.toString();
     }
@@ -83,7 +87,8 @@ public class Simulation
         Set<WaiterSimObject> waiters = RestaurantSimObject.getWaiters();
         waiters.forEach(waiter ->
                 {
-                    stringBuilder.append(waiter.debugMessage())
+                    stringBuilder
+                            .append(waiter.debugMessage())
                             .append(" obsłużył:")
                             .append(waiter.getGuestNumber())
                             .append("\n");
@@ -97,7 +102,8 @@ public class Simulation
         stringBuilder.append("Dania:\n");
         List<Meal> meals = Menu.getMeals();
         meals.forEach(meal -> {
-            stringBuilder.append("[Meal ")
+            stringBuilder
+                    .append("[Meal ")
                     .append(meal.getId())
                     .append("] zamowiono: ")
                     .append(meal.getCounter())
@@ -110,11 +116,28 @@ public class Simulation
         stringBuilder.append("Napoje:\n");
         List<Drink> drinks = Menu.getDrinks();
         drinks.forEach(drink ->{
-            stringBuilder.append("[Drink ")
+            stringBuilder
+                    .append("[Drink ")
                     .append(drink.getId())
                     .append("] zamowiono: ")
                     .append(drink.getCounter())
                     .append('\n');
         });
+    }
+
+    private StringBuilder prepareCookerStatistic()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        Set<CookSimObject> cookers = RestaurantSimObject.getCookers();
+
+        cookers.forEach(cook ->{
+            stringBuilder
+                    .append(cook.debugMessage())
+                    .append("Obsłużył ")
+                    .append(cook.getPreparedOrdersNumber().get())
+                    .append('\n');
+        });
+
+        return stringBuilder;
     }
 }

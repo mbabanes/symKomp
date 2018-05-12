@@ -54,6 +54,9 @@ public class MainWindowController
         statsTextArea.appendText("Statystyki kelnerów:\n");
         statsTextArea.appendText(simulation.waiterStatistics());
 
+        statsTextArea.appendText("\nStatystyki kucharzy:\n");
+        statsTextArea.appendText(simulation.cookersStatistics());
+
         statsTextArea.appendText("\nStatystyki zamówień:\n");
         statsTextArea.appendText(simulation.mealsAndDrinksStatistics());
     }

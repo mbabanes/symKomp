@@ -133,4 +133,9 @@ public class RestaurantSimObject extends SimObject
     {
         return waiters.keySet();
     }
+
+    public static Set<CookSimObject> getCookers()
+    {
+        return cookres.keySet();
+    }
 }

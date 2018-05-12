@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Getter
 public class CookSimObject extends SimObject
 {
-    public static int MAX_ORDER_REALSING = 5;
+    public static int MAX_ORDER_REALESING = 5;
 
     private static AtomicInteger ID = new AtomicInteger(0);
 
     private AtomicInteger currentOrderNumber = new AtomicInteger(0);
 
-
+    private AtomicInteger preparedOrdersNumber = new AtomicInteger(0);
 
     private int id;
 
@@ -27,17 +27,13 @@ public class CookSimObject extends SimObject
 
     public boolean isFree()
     {
-        if (currentOrderNumber.get() == MAX_ORDER_REALSING)
-        {
-            return false;
-        }
-
-        return true;
+        return currentOrderNumber.get() != MAX_ORDER_REALESING;
     }
 
     public void takeOrder()
     {
         currentOrderNumber.getAndIncrement();
+        preparedOrdersNumber.getAndIncrement();
     }
 
     public String debugMessage()
