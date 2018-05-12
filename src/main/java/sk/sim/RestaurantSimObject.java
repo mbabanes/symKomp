@@ -25,7 +25,7 @@ public class RestaurantSimObject extends SimObject
 
     public static AtomicBoolean opened = new AtomicBoolean(true);
 
-    public static AtomicBoolean guestsComming = new AtomicBoolean(true);
+    public static AtomicBoolean guestsComing = new AtomicBoolean(true);
 
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
 
@@ -116,7 +116,7 @@ public class RestaurantSimObject extends SimObject
 
     public static boolean areNewGuestComing()
     {
-        return guestsComming.get();
+        return guestsComing.get();
     }
 
     public static void close()

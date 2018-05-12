@@ -59,7 +59,7 @@ public class NewGuestComingActivity extends SimActivity
 
     private void stopNewGuestComing()
     {
-        RestaurantSimObject.guestsComming.set(false);
+        RestaurantSimObject.guestsComing.set(false);
     }
 
     private boolean areOrdersInProgress()
