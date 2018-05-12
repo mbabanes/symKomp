@@ -11,6 +11,7 @@ public class RestaurantFx
     private IntegerProperty waitersNumberIntegerProperty = new SimpleIntegerProperty(3);
     private IntegerProperty mealsNumberIntegerProperty = new SimpleIntegerProperty(10);
     private IntegerProperty drinksNumberIntegerProperty = new SimpleIntegerProperty(5);
+    private IntegerProperty cookNumberIntegerProperty = new SimpleIntegerProperty(3);
 
 
     public int getGuestNumber()
@@ -51,6 +52,16 @@ public class RestaurantFx
     public IntegerProperty drinksNumberIntegerProperty()
     {
         return drinksNumberIntegerProperty;
+    }
+
+    public int getCookNumber()
+    {
+        return cookNumberIntegerProperty.get();
+    }
+
+    public IntegerProperty cookNumberIntegerProperty()
+    {
+        return cookNumberIntegerProperty;
     }
 
     @Override

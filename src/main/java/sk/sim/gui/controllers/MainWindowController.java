@@ -24,6 +24,9 @@ public class MainWindowController
     private TextField drinksNumber;
 
     @FXML
+    private TextField cookNumber;
+
+    @FXML
     private Button startButton;
 
     @FXML
@@ -71,5 +74,6 @@ public class MainWindowController
         waitersNumber.textProperty().bindBidirectional(restaurantFx.waitersNumberIntegerProperty(), converter);
         mealsNumber.textProperty().bindBidirectional(restaurantFx.mealsNumberIntegerProperty(), converter);
         drinksNumber.textProperty().bindBidirectional(restaurantFx.drinksNumberIntegerProperty(), converter);
+        cookNumber.textProperty().bindBidirectional(restaurantFx.cookNumberIntegerProperty(), converter);
     }
 }

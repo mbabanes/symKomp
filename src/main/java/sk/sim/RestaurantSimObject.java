@@ -21,7 +21,7 @@ public class RestaurantSimObject extends SimObject
     public static int WAITERS_NUMBER = 3;
     public static int MEALS_NUMBER = 10;
     public static int DRINKS_NUMBER = 5;
-    public static int COOKER_NUMBER = 5;
+    public static int COOKER_NUMBER = 3;
 
     public static AtomicBoolean opened = new AtomicBoolean(true);
 

@@ -76,6 +76,7 @@ public class Simulation
         RestaurantSimObject.WAITERS_NUMBER = restaurantFx.getWaitersNumber();
         RestaurantSimObject.MEALS_NUMBER = restaurantFx.getMealsNumber();
         RestaurantSimObject.DRINKS_NUMBER = restaurantFx.getDrinksNumber();
+        RestaurantSimObject.COOKER_NUMBER = restaurantFx.getCookNumber();
 
         RestaurantSimObject.debugMainProperties();
         SimManager.getSimManager().setStopTime(200000000);
