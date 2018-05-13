@@ -2,9 +2,11 @@ package sk.sim.objects;
 
 import deskit.SimObject;
 import lombok.Getter;
+import sk.sim.objects.utill.WaitingTimeInQueueCalculator;
 import sk.sim.utill.Logger;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
@@ -16,6 +18,9 @@ public class GuestSimObject extends SimObject
     private WaiterSimObject waiterSimObject;
     private int time;
 
+
+    private WaitingTimeInQueueCalculator waitingTimeInQueueCalculator;
+
     private Duration timeOfVisit;
     private Duration timeOfWaitingForOrder;
 
@@ -23,6 +28,7 @@ public class GuestSimObject extends SimObject
 
     public GuestSimObject()
     {
+        waitingTimeInQueueCalculator = new WaitingTimeInQueueCalculator(Instant.now());
     }
 
 
@@ -55,6 +61,11 @@ public class GuestSimObject extends SimObject
         this.timeOfWaitingForOrder = timeOfWaitingForOrder;
     }
 
+    public Duration getWaitingTimeInQueue()
+    {
+        return waitingTimeInQueueCalculator.calculateTimeInQueue();
+    }
+
     public void setOrder(OrderSimObject order)
     {
         this.order = order;
@@ -65,3 +76,4 @@ public class GuestSimObject extends SimObject
         return "[Gość " + id + "]: ";
     }
 }
+

@@ -7,6 +7,8 @@ import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.WaiterSimObject;
 import sk.sim.utill.Logger;
 
+import java.time.Instant;
+
 
 public class TakingGuestActivity extends SimActivity
 {
@@ -60,6 +62,8 @@ public class TakingGuestActivity extends SimActivity
     {
         Logger.log(debugMessage() + "Wzial goscia nr: " + guest.getId());
         guest.setWaiter(waiter);
+
+        guest.getWaitingTimeInQueueCalculator().setEndTime(Instant.now());
 
         waiter.takeGuest();
 
