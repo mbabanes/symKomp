@@ -6,8 +6,10 @@ import sk.sim.activities.cook.OrderQueue;
 import sk.sim.objects.*;
 import sk.sim.utill.Logger;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Simulation
 {
@@ -61,21 +63,15 @@ public class Simulation
 
     public String guestsStats()
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        return prepareGuestsStatisticsMessage();
+    }
 
-        RestaurantSimObject.servicedGuests.forEach(guest ->
-        {
-            stringBuilder
-                    .append(guest.debugMessage())
-                    .append(" Czas wizyty: ")
-                    .append(guest.getTimeOfVisit().toMillis())
-                    .append(" ms")
-                    .append(" Czas oczekiwania na zamowienie: ")
-                    .append(guest.getTimeOfWaitingForOrder().toMillis())
-                    .append(" ms\n");
-        });
-
-        return stringBuilder.toString();
+    private List<GuestSimObject> sortGuests()
+    {
+        return RestaurantSimObject.servicedGuests
+                .stream()
+                    .sorted(Comparator.comparingInt(GuestSimObject::getId))
+                    .collect(Collectors.toList());
     }
 
     private void startSimulation()
@@ -143,6 +139,27 @@ public class Simulation
                     .append(drink.getCounter())
                     .append('\n');
         });
+    }
+
+    private String prepareGuestsStatisticsMessage()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        List<GuestSimObject> guests = sortGuests();
+
+        guests.forEach(guest ->
+        {
+            stringBuilder
+                    .append(guest.debugMessage())
+                    .append(" Czas wizyty: ")
+                    .append(guest.getTimeOfVisit().toMillis())
+                    .append(" ms")
+                    .append(" Czas oczekiwania na zamowienie: ")
+                    .append(guest.getTimeOfWaitingForOrder().toMillis())
+                    .append(" ms\n");
+        });
+
+        return stringBuilder.toString();
     }
 
     private StringBuilder prepareCookerStatistic()
