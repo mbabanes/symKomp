@@ -3,6 +3,7 @@ package sk.sim.objects;
 import deskit.SimObject;
 import lombok.Getter;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,6 +21,10 @@ public class OrderSimObject extends SimObject
     private GuestSimObject guestSimObject;
 
     private long preparingTime;
+
+    private Instant startTime;
+    private Instant receiptTime;
+
 
     public OrderSimObject()
     {
@@ -48,6 +53,15 @@ public class OrderSimObject extends SimObject
         drink.increment();
     }
 
+    public void setStartTime(Instant startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public void setReceiptTime(Instant receiptTime)
+    {
+        this.receiptTime = receiptTime;
+    }
 
     public int getMealsNumber()
     {

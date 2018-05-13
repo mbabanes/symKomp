@@ -9,6 +9,8 @@ import sk.sim.objects.OrderSimObject;
 import sk.sim.objects.WaiterSimObject;
 import sk.sim.utill.Logger;
 
+import java.time.Instant;
+
 
 public class PlacingOrderActivity extends GuestVisitActivity
 {
@@ -57,6 +59,8 @@ public class PlacingOrderActivity extends GuestVisitActivity
         WaiterSimObject waiter = guest.getWaiterSimObject();
 
         guest.getOrder().setGuest(guest);
+
+        guest.getOrder().setStartTime(Instant.now());
 
         callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }

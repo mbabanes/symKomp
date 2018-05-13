@@ -2,9 +2,10 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.objects.OrderSimObject;
 import sk.sim.utill.Logger;
 
-import java.util.concurrent.CountDownLatch;
+import java.time.Duration;
 
 public class EatingActivity extends GuestVisitActivity
 {
@@ -20,7 +21,9 @@ public class EatingActivity extends GuestVisitActivity
         int time = random.nextInt(1300);
         waitDuration(time);
 
+        OrderSimObject order = guest.getOrder();
 
+        guest.setTimeOfWaitingForOrder(Duration.between(order.getStartTime(), order.getReceiptTime()));
 //        semaphore.signal();
 
 
