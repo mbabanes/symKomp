@@ -21,4 +21,9 @@ public class Context
     {
         return randomizer;
     }
+
+    public static Randomizer getRandomizerForCook()
+    {
+        return randomizer;
+    }
 }

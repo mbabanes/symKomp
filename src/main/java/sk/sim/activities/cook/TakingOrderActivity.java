@@ -3,11 +3,14 @@ package sk.sim.activities.cook;
 import deskit.SimActivity;
 import sk.sim.RestaurantSimObject;
 import sk.sim.objects.CookSimObject;
+import sk.sim.utill.Context;
 import sk.sim.utill.Logger;
+import sk.sim.utill.Randomizer;
 
 public class TakingOrderActivity extends SimActivity
 {
     private CookSimObject cook;
+    private Randomizer random = Context.getRandomizer();
 
     public TakingOrderActivity(CookSimObject cook)
     {
@@ -17,11 +20,13 @@ public class TakingOrderActivity extends SimActivity
     @Override
     public void action()
     {
+        Logger.log(cook.debugMessage() + "wystartował");
+
         while (RestaurantSimObject.isOpened())
         {
             if (OrderQueue.orders.isEmpty())
             {
-                waitDuration(200);
+                takeShortBreak();
             }
             else
             {
@@ -32,10 +37,15 @@ public class TakingOrderActivity extends SimActivity
                 }
                 else
                 {
-                    waitDuration(100);
+                    waitDuration(60);
                 }
             }
         }
+    }
+
+    private void takeShortBreak()
+    {
+        waitDuration(random.nextInt(200));
     }
 
     private void prepare(OrderNote orderNote)
