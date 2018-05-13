@@ -6,6 +6,7 @@ import lombok.Getter;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
@@ -14,6 +15,8 @@ public class OrderSimObject extends SimObject
     private static AtomicInteger ID = new AtomicInteger(0);
 
     private int id;
+
+    public AtomicBoolean done = new AtomicBoolean(false);
 
     private List<Meal> meals = new ArrayList<>();
     private List<Drink> drinks = new ArrayList<>();

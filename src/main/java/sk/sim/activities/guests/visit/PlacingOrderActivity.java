@@ -2,6 +2,7 @@ package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
 import sk.sim.RestaurantSimObject;
+import sk.sim.activities.cook.OrderQueue;
 import sk.sim.activities.waiters.OrderRealizationActivity;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
@@ -50,6 +51,8 @@ public class PlacingOrderActivity extends GuestVisitActivity
 
         chooseDrinks(order);
         chooseMeals(order);
+
+        OrderQueue.allOrders.add(order);
 
         guest.setOrder(order);
     }

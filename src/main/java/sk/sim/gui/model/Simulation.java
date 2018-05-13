@@ -66,14 +66,6 @@ public class Simulation
         return prepareGuestsStatisticsMessage();
     }
 
-    private List<GuestSimObject> sortGuests()
-    {
-        return RestaurantSimObject.servicedGuests
-                .stream()
-                    .sorted(Comparator.comparingInt(GuestSimObject::getId))
-                    .collect(Collectors.toList());
-    }
-
     private void startSimulation()
     {
         Logger.log("Symulacja");
@@ -151,11 +143,14 @@ public class Simulation
         {
             stringBuilder
                     .append(guest.debugMessage())
-                    .append(" Czas wizyty: ")
+                    .append("Czas wizyty: ")
                     .append(guest.getTimeOfVisit().toMillis())
                     .append(" ms")
-                    .append(" Czas oczekiwania na zamowienie: ")
+                    .append(" | Czas oczekiwania na zamowienie: ")
                     .append(guest.getTimeOfWaitingForOrder().toMillis())
+                    .append(" ms")
+                    .append(" | Czas w kolejce: ")
+                    .append(guest.getWaitingTimeInQueue().toMillis())
                     .append(" ms\n");
         });
 
@@ -176,5 +171,26 @@ public class Simulation
         });
 
         return stringBuilder;
+    }
+
+    private List<GuestSimObject> sortGuests()
+    {
+        return RestaurantSimObject.servicedGuests
+                .stream()
+                .sorted(Comparator.comparingInt(GuestSimObject::getId))
+                .collect(Collectors.toList());
+    }
+
+
+    public String ordersStats()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<OrderSimObject> orders = OrderQueue.allOrders.stream().sorted(Comparator.comparingInt(OrderSimObject::getId)).collect(Collectors.toList());
+
+        orders.forEach(order ->{
+            stringBuilder.append(order.debugMessage()).append(order.done.get()).append('\n');
+        });
+
+        return stringBuilder.toString();
     }
 }
