@@ -62,6 +62,9 @@ public class MainWindowController
 
         statsTextArea.appendText("\nStatystyki zamówień:\n");
         statsTextArea.appendText(simulation.mealsAndDrinksStatistics());
+
+        statsTextArea.appendText("\nStatystyki gości:\n");
+        statsTextArea.appendText(simulation.guestsStats());
     }
 
     private void bindTextFields()

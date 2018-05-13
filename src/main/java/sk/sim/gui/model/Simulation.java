@@ -59,6 +59,25 @@ public class Simulation
         return stringBuilder.toString();
     }
 
+    public String guestsStats()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        RestaurantSimObject.servicedGuests.forEach(guest ->
+        {
+            stringBuilder
+                    .append(guest.debugMessage())
+                    .append(" Czas wizyty: ")
+                    .append(guest.getTimeOfVisit().toMillis())
+                    .append(" ms")
+                    .append(" Czas oczekiwania na zamowienie: ")
+                    .append(guest.getTimeOfWaitingForOrder().toMillis())
+                    .append(" ms\n");
+        });
+
+        return stringBuilder.toString();
+    }
+
     private void startSimulation()
     {
         Logger.log("Symulacja");
