@@ -65,6 +65,8 @@ public class MainWindowController
 
         statsTextArea.appendText("\nStatystyki gości:\n");
         statsTextArea.appendText(simulation.guestsStats());
+
+        System.out.println(simulation.ordersStats());
     }
 
     private void bindTextFields()
