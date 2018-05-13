@@ -4,6 +4,7 @@ import deskit.SimActivity;
 import deskit.SimObject;
 import lombok.Getter;
 import sk.sim.activities.cook.TakingOrderActivity;
+import sk.sim.activities.guests.GuestActivity;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.objects.*;
@@ -28,6 +29,8 @@ public class RestaurantSimObject extends SimObject
     public static AtomicBoolean guestsComing = new AtomicBoolean(true);
 
     public static Deque<GuestSimObject> expectantGuests = new LinkedBlockingDeque<>();
+
+    public static List<GuestSimObject> servicedGuests = Collections.synchronizedList(new ArrayList<>());
 
     private static Map<CookSimObject, TakingOrderActivity> cookres = new HashMap<>();
     private static Map<WaiterSimObject, TakingGuestActivity> waiters = new ConcurrentHashMap<>();
