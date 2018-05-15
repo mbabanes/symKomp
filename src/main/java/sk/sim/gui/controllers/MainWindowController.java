@@ -73,7 +73,7 @@ public class MainWindowController
         statsTextArea.appendText("\nStatystyki gości:\n");
         statsTextArea.appendText(simulation.guestsStats());
 
-        System.out.println(simulation.ordersStats());
+//        System.out.println(simulation.ordersStats());
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.GREEN);
