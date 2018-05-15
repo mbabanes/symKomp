@@ -1,13 +1,13 @@
 package sk.sim.gui.visualisation.object;
 
-import sk.sim.gui.visualisation.utill.Location;
+import javafx.scene.shape.Circle;
 import sk.sim.objects.GuestSimObject;
 
 public class Guest
 {
     private GuestSimObject guest;
 
-    private Location currentLocation;
+   private Circle circle;
 
 
     public Guest(GuestSimObject guest)
@@ -35,14 +35,6 @@ public class Guest
         return guest.getId();
     }
 
-    @Override
-    public String toString()
-    {
-        return "Guest{" +
-                "guest=" + guest.getId() +
-                '}';
-    }
-
     public void placeOrder()
     {
 
@@ -50,11 +42,18 @@ public class Guest
 
     public void eat()
     {
-
     }
 
     public void rest()
     {
 
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Guest{" +
+                "guest=" + guest.getId() +
+                '}';
     }
 }

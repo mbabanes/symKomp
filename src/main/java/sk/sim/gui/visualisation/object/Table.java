@@ -1,16 +1,16 @@
 package sk.sim.gui.visualisation.object;
 
+import javafx.scene.shape.Circle;
 import lombok.Getter;
-import sk.sim.gui.visualisation.utill.Location;
-import sk.sim.objects.WaiterSimObject;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Table
 {
-    private WaiterSimObject waiter;
     private boolean free = true;
 
-    private Location location;
+    private Circle circle;
 
 
     public void sit()
