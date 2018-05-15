@@ -1,6 +1,8 @@
 package sk.sim.activities.guests.visit;
 
 import deskit.synchronizers.Semaphore;
+import sk.sim.gui.visualisation.event.GuestEatingEvent;
+import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.OrderSimObject;
 import sk.sim.utill.Logger;
@@ -17,6 +19,8 @@ public class EatingActivity extends GuestVisitActivity
     @Override
     public void action()
     {
+        VisualisationLog.log(guest.getId(), new GuestEatingEvent());
+
         Logger.log(guest.debugMessage() + "Je");
         int time = random.nextInt(1300);
         waitDuration(time);

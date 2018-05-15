@@ -4,6 +4,9 @@ import deskit.SimActivity;
 import deskit.synchronizers.Semaphore;
 import sk.sim.RestaurantSimObject;
 import sk.sim.activities.guests.visit.PlacingOrderActivity;
+import sk.sim.gui.visualisation.event.GuestSitingDownEvent;
+import sk.sim.gui.visualisation.log.VisualisationLog;
+import sk.sim.gui.visualisation.object.Guest;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.utill.Logger;
 
@@ -25,6 +28,8 @@ public class GuestActivity extends SimActivity
     @Override
     public void action()
     {
+        VisualisationLog.log(guest.getId(), new GuestSitingDownEvent());
+
         Instant start = Instant.now();
         Logger.log(guest.debugMessage() + " Rozpoczyna wizytę");
 

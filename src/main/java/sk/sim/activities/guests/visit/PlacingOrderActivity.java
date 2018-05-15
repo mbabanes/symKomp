@@ -4,6 +4,8 @@ import deskit.synchronizers.Semaphore;
 import sk.sim.RestaurantSimObject;
 import sk.sim.activities.cook.OrderQueue;
 import sk.sim.activities.waiters.OrderRealizationActivity;
+import sk.sim.gui.visualisation.event.GuestPlacingOrderEvent;
+import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
 import sk.sim.objects.OrderSimObject;
@@ -23,6 +25,7 @@ public class PlacingOrderActivity extends GuestVisitActivity
     @Override
     public void action()
     {
+        VisualisationLog.log(guest.getId(), new GuestPlacingOrderEvent());
         Logger.log(guest.debugMessage() + "Składa zamowienie");
 
         browseMenu();
