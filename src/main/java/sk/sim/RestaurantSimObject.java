@@ -7,6 +7,8 @@ import sk.sim.activities.cook.TakingOrderActivity;
 import sk.sim.activities.guests.GuestActivity;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
+import sk.sim.gui.visualisation.log.VisualisationLog;
+import sk.sim.gui.visualisation.object.Guest;
 import sk.sim.objects.*;
 import sk.sim.utill.Logger;
 
@@ -53,6 +55,15 @@ public class RestaurantSimObject extends SimObject
     }
 
 
+    public static void newGuestCome(GuestSimObject guestSimObject)
+    {
+        RestaurantSimObject.expectantGuests.addLast(guestSimObject);
+        Logger.log("Nowy gosc w kolejce: " + guestSimObject);
+
+        Guest guestVisualisation = new Guest(guestSimObject);
+        VisualisationLog.addNewGuest(guestVisualisation);
+    }
+
     private void initMealsAndDrinks()
     {
         for(int i = 0; i < MEALS_NUMBER; i++)
@@ -68,12 +79,10 @@ public class RestaurantSimObject extends SimObject
 
     private void prepareFirstGuests()
     {
-        expectantGuests.add(new GuestSimObject());
-        expectantGuests.add(new GuestSimObject());
-        expectantGuests.add(new GuestSimObject());
-        expectantGuests.add(new GuestSimObject());
-        expectantGuests.add(new GuestSimObject());
-        expectantGuests.add(new GuestSimObject());
+        for(int i = 0; i < 7; i++)
+        {
+            newGuestCome(new GuestSimObject());
+        }
     }
 
     private void waitersInitialization()

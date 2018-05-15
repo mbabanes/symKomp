@@ -52,9 +52,7 @@ public class NewGuestComingActivity extends SimActivity
 
     private void addGuest()
     {
-        GuestSimObject guest = new GuestSimObject();
-        RestaurantSimObject.expectantGuests.addLast(guest);
-        Logger.log("Nowy gosc w kolejce: " + guest);
+       RestaurantSimObject.newGuestCome(new GuestSimObject());
     }
 
     private void stopNewGuestComing()
