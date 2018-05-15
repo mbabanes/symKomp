@@ -1,16 +1,14 @@
 package sk.sim.gui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.Pane;
 import javafx.util.converter.NumberStringConverter;
-import sk.sim.RestaurantSimObject;
 import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
+import sk.sim.gui.visualisation.Visualisation;
 import sk.sim.utill.Logger;
 
 public class MainWindowController
@@ -40,7 +38,7 @@ public class MainWindowController
     private TextArea statsTextArea;
 
     @FXML
-    private Canvas canvas;
+    private Pane canvas;
 
 
     private Simulation simulation;
@@ -75,26 +73,9 @@ public class MainWindowController
 
 //        System.out.println(simulation.ordersStats());
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.GREEN);
-        gc.setLineWidth(1);
+        Visualisation visualisation = new Visualisation(canvas);
+        visualisation.initTables();
 
-        double startX = 246;
-        double startY = 100;
-        double spaceBeetTables = 80;
-        double x = startX;
-        double y = startY;
-        for(int i = 1; i < (RestaurantSimObject.WAITERS_NUMBER*3 + 1); i++  )
-        {
-            gc.fillOval(x, y, 20, 20);
-            x += 45;
-            if(i % 6 == 0)
-            {
-                x = startX;
-                y += spaceBeetTables;
-            }
-        }
     }
 
     private void bindTextFields()
