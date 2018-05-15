@@ -3,6 +3,8 @@ package sk.sim.gui.model;
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
 import sk.sim.activities.cook.OrderQueue;
+import sk.sim.gui.visualisation.event.Events;
+import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.*;
 import sk.sim.utill.Logger;
 
@@ -34,6 +36,15 @@ public class Simulation
 
 
         startSimulation();
+
+        System.out.println("\nVisualisationLog:");
+
+        for (Integer order : VisualisationLog.eventsOrder.keySet())
+        {
+            System.out.print("[" + order + "]: ");
+            Events events = VisualisationLog.events.get(VisualisationLog.eventsOrder.get(order));
+            System.out.println(events.getCurrentEvent());
+        }
     }
 
     public String waiterStatistics()
