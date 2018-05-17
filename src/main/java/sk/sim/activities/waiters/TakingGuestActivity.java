@@ -25,7 +25,7 @@ public class TakingGuestActivity extends SimActivity
         Logger.log("\n" + debugMessage());
         Logger.log("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
-        while ( RestaurantSimObject.areNewGuestComing() )
+        while ( RestaurantSimObject.isOpened() )
         {
             if ( expectantGuestAreNotInRestaurant() )
             {
