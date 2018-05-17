@@ -2,6 +2,7 @@ package sk.sim.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -40,6 +41,8 @@ public class MainWindowController
     @FXML
     private Pane canvas;
 
+    @FXML
+    private Label label;
 
     private Simulation simulation;
 
@@ -73,8 +76,11 @@ public class MainWindowController
 
 //        System.out.println(simulation.ordersStats());
 
-        Visualisation visualisation = new Visualisation(canvas);
+        Visualisation visualisation = new Visualisation();
+        Visualisation.canvas = canvas;
+        Visualisation.label = label;
         visualisation.initTables();
+        visualisation.visual();
 
     }
 
