@@ -36,15 +36,6 @@ public class Simulation
 
 
         startSimulation();
-
-        System.out.println("\nVisualisationLog:");
-
-        for (Integer order : VisualisationLog.eventsOrder.keySet())
-        {
-            System.out.print("[" + order + "]: ");
-            Events events = VisualisationLog.events.get(VisualisationLog.eventsOrder.get(order));
-            System.out.println(events.getCurrentEvent());
-        }
     }
 
     public String waiterStatistics()
