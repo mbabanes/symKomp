@@ -45,7 +45,7 @@ public class TakingOrderActivity extends SimActivity
 
     private void takeShortBreak()
     {
-        waitDuration(random.nextInt(200));
+        waitDuration(random.nextInt(60));
     }
 
     private void prepare(OrderNote orderNote)
