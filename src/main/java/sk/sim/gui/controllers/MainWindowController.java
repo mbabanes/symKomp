@@ -42,7 +42,10 @@ public class MainWindowController
     private Pane canvas;
 
     @FXML
-    private Label label;
+    private Label endLabel;
+
+    @FXML
+    private Label queueLabel;
 
     private Simulation simulation;
 
@@ -74,14 +77,20 @@ public class MainWindowController
         statsTextArea.appendText("\nStatystyki gości:\n");
         statsTextArea.appendText(simulation.guestsStats());
 
-//        System.out.println(simulation.ordersStats());
 
+        runVisualisation();
+    }
+
+    private void runVisualisation()
+    {
         Visualisation visualisation = new Visualisation();
         Visualisation.canvas = canvas;
-        Visualisation.label = label;
-        visualisation.initTables();
-        visualisation.visual();
+        Visualisation.label = endLabel;
 
+        queueLabel.setVisible(true);
+
+        visualisation.initTables();
+        visualisation.runVisualisation();
     }
 
     private void bindTextFields()

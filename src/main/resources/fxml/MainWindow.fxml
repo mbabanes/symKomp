@@ -143,7 +143,6 @@
                                             </HBox>
                                         </children>
                                     </GridPane>
-                              <Label fx:id="label" />
                                 </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -156,6 +155,11 @@
                               <Label layoutX="908.0" layoutY="35.0" text="Stolik" />
                               <Circle fill="BLUE" layoutX="876.0" layoutY="83.0" radius="10.0" stroke="BLUE" strokeType="INSIDE" />
                               <Label layoutX="909.0" layoutY="73.0" text="Gość" />
+                              <Label fx:id="endLabel" layoutX="400.0" layoutY="5.0">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
+                              <Label fx:id="queueLabel" layoutX="28.0" layoutY="114.0" text="Kolejka:" visible="false" />
                            </children></Pane>
                         </children>
                     </HBox>
