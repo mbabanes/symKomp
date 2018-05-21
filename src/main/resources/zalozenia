@@ -47,3 +47,7 @@ Kucharz
     - dostaje zamowienia do zrealizowania w kolejce (na zasadzie kto pierwszy ten lepszy (FIFO))``.
     - kucharz moze realizowac okreslona ilosc zamowien
     - zrealizowane zamowienie przekazywane jest do zrealizowanych zamowien.
+
+
+Waiter
+    - kazdy kelenr ma semafor kotry mowi ze gosc juz wyszedl a restaruacja na to czeka.
