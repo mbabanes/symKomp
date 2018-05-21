@@ -2,9 +2,10 @@ package sk.sim;
 
 import deskit.SimActivity;
 import deskit.SimObject;
+
 import lombok.Getter;
+
 import sk.sim.activities.cook.TakingOrderActivity;
-import sk.sim.activities.guests.GuestActivity;
 import sk.sim.activities.guests.NewGuestComingActivity;
 import sk.sim.activities.waiters.TakingGuestActivity;
 import sk.sim.gui.visualisation.log.VisualisationLog;
@@ -43,7 +44,7 @@ public class RestaurantSimObject extends SimObject
     public RestaurantSimObject()
     {
         initMealsAndDrinks();
-        prepareFirstGuests();
+//        prepareFirstGuests();
         waitersInitialization();
         cookerInitialization();
 
