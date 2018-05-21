@@ -1,9 +1,13 @@
 package sk.sim.gui.visualisation.object;
 
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import sk.sim.gui.visualisation.Queue;
 import sk.sim.objects.GuestSimObject;
 
@@ -25,11 +29,9 @@ public class Guest
         this.guest = guest;
     }
 
-    public void out()
+    public void stayInQueue()
     {
-        table.setFree(true);
-        circle.setVisible(false);
-        statusLabel.setVisible(false);
+        Queue.come(this);
     }
 
     public void sitDown()
@@ -37,30 +39,20 @@ public class Guest
         statusLabel.setText("Siada");
 
         Queue.getOut(this);
-        Optional<Table> tableOptional = guest.getWaiterSimObject().getTables().stream().filter(Table::isFree).findFirst();
-        table = tableOptional.get();
-        table.setFree(false);
-        Circle circle = table.getCircle();
+        table = findFreeTable();
+        table.sit();
+        moveCircleToTable();
 
-        double x = circle.getLayoutX() - 20;
-        double y = circle.getLayoutY() - 10;
-        this.circle.relocate(x, y);
-        statusLabel.relocate(x - 50, y - 30);
-    }
-
-    public void stayInQueue()
-    {
-        Queue.come(this);
-    }
-
-    public int getId()
-    {
-        return guest.getId();
     }
 
     public void placeOrder()
     {
         statusLabel.setText("Zamawia  ");
+    }
+
+    public void waitForOrder()
+    {
+        statusLabel.setText("Czeka");
     }
 
     public void eat()
@@ -70,7 +62,18 @@ public class Guest
 
     public void rest()
     {
-        statusLabel.setText("Odpo  ");
+        statusLabel.setText("Odpo");
+    }
+
+    public void out()
+    {
+        table.makeFree();
+        removeCircleAndLabelFromCanvas();
+    }
+
+    public int getId()
+    {
+        return guest.getId();
     }
 
     @Override
@@ -79,5 +82,34 @@ public class Guest
         return "Guest{" +
                 "guest=" + guest.getId() +
                 '}';
+    }
+
+    private void removeCircleAndLabelFromCanvas()
+    {
+        Parent parent = circle.getParent();
+        ((Pane) parent ).getChildren().remove(circle);
+        ((Pane) parent ).getChildren().remove(statusLabel);
+    }
+
+    private Table findFreeTable()
+    {
+        Optional<Table> tableOptional = guest.getWaiterSimObject()
+                .getTables()
+                .stream()
+                .filter(Table::isFree)
+                .findFirst();
+        return tableOptional.get();
+    }
+
+    private void moveCircleToTable()
+    {
+        Circle circle = table.getCircle();
+
+        double x = circle.getLayoutX() - 20;
+        double y = circle.getLayoutY() - 10;
+        this.circle.relocate(x, y);
+
+
+        statusLabel.relocate(x, y + 30);
     }
 }
