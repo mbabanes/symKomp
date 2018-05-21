@@ -1,7 +1,6 @@
 package sk.sim.gui.visualisation;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sk.sim.gui.visualisation.object.Guest;
@@ -11,32 +10,17 @@ import java.util.LinkedList;
 
 public class Queue
 {
-    private static Deque<Guest> guests = new LinkedList<>();
-    private Pane canvas;
+    private static Deque<Guest> queue = new LinkedList<>();
 
-    public Queue(Pane canvas)
-    {
-        this.canvas = canvas;
-    }
 
     public static void come(Guest guest)
     {
         Circle circle = new Circle(10, Color.BLUE);
         Label label = new Label();
-        circle.setAccessibleText("tess");
-        if (guests.isEmpty())
-        {
-            circle.relocate(20, 150);
-            label.relocate(30, 150);
 
-        } else
-        {
-            Guest previousGuest = guests.getLast();
-            circle.relocate(20, previousGuest.getCircle().getLayoutY() + 15);
-            label.relocate(30, previousGuest.getStatusLabel().getLayoutY() + 15);
-        }
+        draw(circle, label);
 
-        guests.addLast(guest);
+        queue.addLast(guest);
         guest.setCircle(circle);
         guest.setStatusLabel(label);
 
@@ -47,12 +31,26 @@ public class Queue
 
     public static void getOut(Guest guest)
     {
-//        Guest currentGuest = guests.removeFirst();
-        guests.remove(guest);
+        queue.remove(guest);
 
-        if (!guests.isEmpty())
+        if (!queue.isEmpty())
         {
-            guests.forEach(Queue::moveUp);
+            queue.forEach(Queue::moveUp);
+        }
+    }
+
+    private static void draw(Circle circle, Label label)
+    {
+        if (queue.isEmpty())
+        {
+            circle.relocate(20, 150);
+            label.relocate(30, 150);
+
+        } else
+        {
+            Guest previousGuest = queue.getLast();
+            circle.relocate(20, previousGuest.getCircle().getLayoutY() + 15);
+            label.relocate(30, previousGuest.getStatusLabel().getLayoutY() + 15);
         }
     }
 
