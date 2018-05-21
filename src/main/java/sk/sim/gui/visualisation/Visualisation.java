@@ -19,35 +19,17 @@ public class Visualisation
 {
     public static Pane canvas;
     public static Label label;
-    private Queue queue;
-
-    public Visualisation()
-    {
-        queue = new Queue(canvas);
-    }
 
     public void initTables()
     {
         drawTables();
     }
 
-    public void visual()
+    public void runVisualisation()
     {
         Timeline timeline = new Timeline();
 
-        long time = 200;
-        ObservableList<KeyFrame> frames = timeline.getKeyFrames();
-        for (Integer order : VisualisationLog.eventsOrder.keySet())
-        {
-            Events events = VisualisationLog.events.get(VisualisationLog.eventsOrder.get(order));
-            Event event = events.getCurrentEvent();
-
-            frames.add(new KeyFrame(Duration.millis(time), e -> event.action()));
-            time += 200;
-//               event.action();
-        }
-
-        frames.add(new KeyFrame(Duration.millis(time), e -> label.setText("Koniec")));
+        prepareFramesForVisualisation(timeline.getKeyFrames());
         timeline.setCycleCount(1);
 
         timeline.play();
@@ -68,16 +50,12 @@ public class Visualisation
         {
             for (Table table : waiter.getTables())
             {
-                Circle circle = new Circle(15, Color.GREEN);
-                circle.relocate(x, y);
-
-                table.setCircle(circle);
-                canvas.getChildren().add(circle);
-                x += 60;
+                table.setCircle( drawTable(x, y) );
+                x += 100;
                 if (i % 6 == 0)
                 {
                     x = startX;
-                    y += 80;
+                    y += 100;
                 }
 
                 i++;
@@ -85,5 +63,29 @@ public class Visualisation
         }
     }
 
+    private Circle drawTable(double x, double y)
+    {
+        Circle circle = new Circle(15, Color.GREEN);
+        circle.relocate(x, y);
 
+        canvas.getChildren().add(circle);
+
+        return circle;
+    }
+
+    private void prepareFramesForVisualisation(ObservableList<KeyFrame> frames)
+    {
+        long time = 200;
+
+        for (Integer order : VisualisationLog.eventsOrder.keySet())
+        {
+            Events events = VisualisationLog.events.get(VisualisationLog.eventsOrder.get(order));
+            Event event = events.getCurrentEvent();
+
+            frames.add( new KeyFrame( Duration.millis(time) , e -> event.action() ) );
+            time += 400;
+        }
+
+        frames.add(new KeyFrame(Duration.millis(time), e -> label.setText("Koniec")));
+    }
 }
