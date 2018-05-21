@@ -5,6 +5,7 @@ import sk.sim.RestaurantSimObject;
 import sk.sim.activities.cook.OrderQueue;
 import sk.sim.activities.waiters.OrderRealizationActivity;
 import sk.sim.gui.visualisation.event.GuestPlacingOrderEvent;
+import sk.sim.gui.visualisation.event.GuestWaitingForOrder;
 import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
@@ -34,6 +35,8 @@ public class PlacingOrderActivity extends GuestVisitActivity
         Logger.log(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
         callWaiterToRealizationOrder();
+        VisualisationLog.log(guest.getId(), new GuestWaitingForOrder());
+
         Logger.log(guest.debugMessage() + "Oczekuje na zamowienie.");
     }
 
