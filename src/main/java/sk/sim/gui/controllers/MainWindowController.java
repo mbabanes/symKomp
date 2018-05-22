@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.util.converter.NumberStringConverter;
+import sk.sim.gui.model.GuestsStatistics;
 import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
 import sk.sim.gui.visualisation.Visualisation;
@@ -65,20 +66,29 @@ public class MainWindowController
         simulation.start();
         startButton.setDisable(true);
 
-        statsTextArea.appendText("Statystyki kelnerów:\n");
-        statsTextArea.appendText(simulation.waiterStatistics());
+        putMessage("Statystyki kelnerów:\n", simulation.waiterStatistics());
 
-        statsTextArea.appendText("\nStatystyki kucharzy:\n");
-        statsTextArea.appendText(simulation.cookersStatistics());
+        putMessage("\nStatystyki kucharzy:\n", simulation.cookersStatistics());
 
-        statsTextArea.appendText("\nStatystyki zamówień:\n");
-        statsTextArea.appendText(simulation.mealsAndDrinksStatistics());
-
-        statsTextArea.appendText("\nStatystyki gości:\n");
-        statsTextArea.appendText(simulation.guestsStats());
+        putMessage("\nStatystyki zamówień:\n", simulation.mealsAndDrinksStatistics());
 
 
-        runVisualisation();
+        putDescriptiveStats();
+
+//        runVisualisation();
+    }
+
+    private void putMessage(String narrow, String message)
+    {
+        statsTextArea.appendText(narrow);
+        statsTextArea.appendText(message);
+    }
+
+    private void putDescriptiveStats()
+    {
+        statsTextArea.appendText("\nStatystyki opisowe:\n");
+        String message = new GuestsStatistics().getMessage();
+        statsTextArea.appendText(message);
     }
 
     private void runVisualisation()
