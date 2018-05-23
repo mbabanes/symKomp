@@ -75,7 +75,7 @@ public class MainWindowController
 
         putDescriptiveStats();
 
-//        runVisualisation();
+        runVisualisation();
     }
 
     private void putMessage(String narrow, String message)
