@@ -48,6 +48,8 @@ public class NewGuestComingActivity extends SimActivity
                 break;
             }
         }
+
+        waitDuration(20000);
     }
 
     private void addGuest()
