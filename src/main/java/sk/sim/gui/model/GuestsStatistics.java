@@ -54,8 +54,8 @@ public class GuestsStatistics
     private String prepareQueueWaitingTimeMessage()
     {
         StringBuilder pattern = new StringBuilder();
-        pattern.append("\nŚredni czas oczekiwania na zamówienie: {0}\n")
-                .append("Najdłuższy czas oczelowamoe w kolejce: {1}\n")
+        pattern.append("\nŚredni czas oczekiwania w kolejce: {0}\n")
+                .append("Najdłuższy czas oczekiwania w kolejce: {1}\n")
                 .append("Najkrótszy czas oczekiwnaia w kolejce: {2}\n")
                 .append("Mediana czasu oczekiwania w kolejce: {3}\n")
                 .append("Odchylenie standardowe od czasu oczekiwania w kolejce: {4}\n");
