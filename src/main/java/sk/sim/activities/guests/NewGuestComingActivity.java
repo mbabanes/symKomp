@@ -23,11 +23,11 @@ public class NewGuestComingActivity extends SimActivity
         while (true)
         {
             addGuest();
-            waitDuration(100);
+            waitDuration(1000);
             if (RestaurantSimObject.expectantGuests.size() > 6)
             {
                 Logger.log("\nNowi goscie pause\n");
-                waitDuration(1000);
+                waitDuration(100000);
             }
 
 
