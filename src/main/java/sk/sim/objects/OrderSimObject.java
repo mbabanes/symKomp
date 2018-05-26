@@ -2,14 +2,15 @@ package sk.sim.objects;
 
 import deskit.SimObject;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
+@Setter
 public class OrderSimObject extends SimObject
 {
     private static AtomicInteger ID = new AtomicInteger(0);
@@ -25,19 +26,13 @@ public class OrderSimObject extends SimObject
 
     private long preparingTime;
 
-    private Instant startTime;
-    private Instant receiptTime;
+    private double startTime;
+    private double receiptTime;
 
 
     public OrderSimObject()
     {
         this.id = ID.getAndIncrement();
-    }
-
-    public OrderSimObject(GuestSimObject guestSimObject)
-    {
-        this();
-        this.guestSimObject = guestSimObject;
     }
 
     public void addMeal(Meal meal)
@@ -56,15 +51,6 @@ public class OrderSimObject extends SimObject
         drink.increment();
     }
 
-    public void setStartTime(Instant startTime)
-    {
-        this.startTime = startTime;
-    }
-
-    public void setReceiptTime(Instant receiptTime)
-    {
-        this.receiptTime = receiptTime;
-    }
 
     public int getMealsNumber()
     {
