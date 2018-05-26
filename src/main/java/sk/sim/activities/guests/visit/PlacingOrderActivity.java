@@ -27,17 +27,17 @@ public class PlacingOrderActivity extends GuestVisitActivity
     public void action()
     {
         VisualisationLog.log(guest.getId(), new GuestPlacingOrderEvent());
-        Logger.log(guest.debugMessage() + "Składa zamowienie");
+        Logger.log(() -> guest.debugMessage() + "Składa zamowienie");
 
         browseMenu();
         placeOrder();
 
-        Logger.log(guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
+        Logger.log(() -> guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
         callWaiterToRealizationOrder();
         VisualisationLog.log(guest.getId(), new GuestWaitingForOrder());
 
-        Logger.log(guest.debugMessage() + "Oczekuje na zamowienie.");
+        Logger.log(() -> guest.debugMessage() + "Oczekuje na zamowienie.");
     }
 
     private void browseMenu()
@@ -69,8 +69,23 @@ public class PlacingOrderActivity extends GuestVisitActivity
 
         guest.getOrder().setGuest(guest);
 
-        guest.getOrder().setStartTime(Instant.now());
+        guest.getOrder().setStartTime(guest.getSimTime());
 
+
+        waitForWaiter(waiter);
+    }
+
+    private void waitForWaiter(WaiterSimObject waiter)
+    {
+        while (waiter.isBusy())
+        {
+            waitDuration(1000);
+            Logger.consoleLog(() -> waiter.debugMessage() + " zbyt zajety");
+        }
+        waiter.setBusy(true);
+
+        waitDuration(random.nextInt(1000) * waiter.getStressRate());
+//        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
         callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }
 
