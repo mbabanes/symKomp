@@ -20,11 +20,16 @@ public class Drink
     public Drink()
     {
         id = ID.getAndIncrement();
-        preparingTime = random.nextInt(600);
+        preparingTime = random.nextInt(600) + 300;
     }
 
     public void increment()
     {
         counter.incrementAndGet();
+    }
+
+    public String debugMessage()
+    {
+        return "[Drink " + id + "]: ";
     }
 }

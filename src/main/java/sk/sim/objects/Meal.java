@@ -22,7 +22,7 @@ public class Meal
     public Meal()
     {
         id = ID.getAndIncrement();
-        preparingTime = random.nextInt(1400);
+        preparingTime = random.nextInt(1400) + 1000;
     }
 
     public void increment()
@@ -37,5 +37,10 @@ public class Meal
                 "id=" + id +
                 ", counter=" + counter +
                 '}';
+    }
+
+    public String debugMessage()
+    {
+        return "[Meal " + id + "]: ";
     }
 }
