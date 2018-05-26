@@ -65,18 +65,16 @@ public class PlacingOrderActivity extends GuestVisitActivity
 
     private void callWaiterToRealizationOrder()
     {
-        WaiterSimObject waiter = guest.getWaiterSimObject();
-
         guest.getOrder().setGuest(guest);
 
         guest.getOrder().setStartTime(guest.getSimTime());
 
-
-        waitForWaiter(waiter);
+        waitForWaiter();
     }
 
-    private void waitForWaiter(WaiterSimObject waiter)
+    private void waitForWaiter()
     {
+        WaiterSimObject waiter = guest.getWaiterSimObject();
         while (waiter.isBusy())
         {
             waitDuration(1000);
