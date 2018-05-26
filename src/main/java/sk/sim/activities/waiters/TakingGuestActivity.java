@@ -22,8 +22,8 @@ public class TakingGuestActivity extends SimActivity
     @Override
     public void action()
     {
-        Logger.log("\n" + debugMessage());
-        Logger.log("[Thread TakingGuestActivity]: " + super.getName() + super.getId());
+        Logger.log(() ->"\n" + debugMessage());
+        Logger.log(() ->"[Thread TakingGuestActivity]: " + super.getName() + super.getId());
 
         while ( RestaurantSimObject.isOpened() )
         {
@@ -60,10 +60,10 @@ public class TakingGuestActivity extends SimActivity
 
     private void invite(GuestSimObject guest)
     {
-        Logger.log(debugMessage() + "Wzial goscia nr: " + guest.getId());
+        Logger.log(() -> debugMessage() + "Wzial goscia nr: " + guest.getId());
         guest.setWaiter(waiter);
 
-        guest.getWaitingTimeInQueueCalculator().setEndTime(Instant.now());
+        guest.getWaitingTimeInQueueCalculator().setEndTime(guest.getSimTime());
 
         waiter.takeGuest();
 
