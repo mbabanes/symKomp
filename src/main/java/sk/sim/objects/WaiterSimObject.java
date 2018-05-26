@@ -7,6 +7,7 @@ import sk.sim.gui.visualisation.object.Table;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Setter
@@ -14,6 +15,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class WaiterSimObject extends SimObject
 {
     private static final int MAX_GUEST = 3;
+
+    private double stressRate = 0.1;
 
     private static AtomicInteger ID = new AtomicInteger();
 
@@ -23,6 +26,8 @@ public class WaiterSimObject extends SimObject
 
     private AtomicInteger currentGuestNumber = new AtomicInteger();
 
+
+    private AtomicBoolean busy = new AtomicBoolean(false);
 
     private List<Table> tables = new ArrayList<>();
 
@@ -47,6 +52,8 @@ public class WaiterSimObject extends SimObject
     {
         currentGuestNumber.getAndIncrement();
         guestsNumber.incrementAndGet();
+
+        stressRate += 0.1;
     }
 
 
@@ -60,4 +67,13 @@ public class WaiterSimObject extends SimObject
         return guestsNumber.get();
     }
 
+    public boolean isBusy()
+    {
+        return busy.get();
+    }
+
+    public void setBusy(boolean busy)
+    {
+        this.busy.set(busy);
+    }
 }
