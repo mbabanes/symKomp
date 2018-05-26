@@ -4,15 +4,19 @@ import deskit.SimActivity;
 import deskit.synchronizers.Semaphore;
 import sk.sim.activities.guests.visit.EatingActivity;
 import sk.sim.objects.OrderSimObject;
+import sk.sim.objects.WaiterSimObject;
+import sk.sim.utill.Context;
 import sk.sim.utill.Logger;
-
-import java.time.Instant;
+import sk.sim.utill.Randomizer;
 
 public class BringingOrderForGuestActivity extends SimActivity
 {
 
     private OrderSimObject order;
     private Semaphore semaphore;
+
+    private static Randomizer random = Context.getRandomizer();
+
 
     public BringingOrderForGuestActivity(OrderSimObject order, Semaphore semaphore)
     {
@@ -23,9 +27,18 @@ public class BringingOrderForGuestActivity extends SimActivity
     @Override
     public void action()
     {
-        Logger.log(order.getGuestSimObject().getWaiterSimObject().debugMessage() + "Zanosi " + order.debugMessage() + "do " + order.getGuestSimObject().debugMessage());
-        order.setReceiptTime(Instant.now());
+        WaiterSimObject waiter = order.getGuestSimObject().getWaiterSimObject();
+        Logger.log(() ->waiter.debugMessage() + "Zanosi " + order.debugMessage() + "do " + order.getGuestSimObject().debugMessage());
+
+        waitDuration(random.nextInt(1000) * waiter.getStressRate());
+
+        order.setReceiptTime(order.getSimTime());
+
+
         callActivity(order.getGuestSimObject(), new EatingActivity(order.getGuestSimObject(), semaphore));
-        Logger.log(order.getGuestSimObject().getWaiterSimObject().debugMessage() + "Zaniósł " + order.debugMessage() + "do " + order.getGuestSimObject().debugMessage());
+
+        waiter.setBusy(false);
+
+        Logger.log(() -> waiter.debugMessage() + "Zaniósł " + order.debugMessage() + "do " + order.getGuestSimObject().debugMessage());
     }
 }
