@@ -20,22 +20,15 @@ public class EatingActivity extends GuestVisitActivity
     public void action()
     {
         VisualisationLog.log(guest.getId(), new GuestEatingEvent());
-        OrderSimObject order = guest.getOrder();
-        guest.setTimeOfWaitingForOrder(Duration.between(order.getStartTime(), order.getReceiptTime()));
 
-        Logger.log(guest.debugMessage() + "Je");
+        Logger.log(() -> guest.debugMessage() + "Je");
         int time = random.nextInt(1300);
         waitDuration(time);
 
-
-//        semaphore.signal();
-
-
-        Logger.log(guest.debugMessage() + "Skonczyl jesc.");
+        Logger.log(() -> guest.debugMessage() + "Skonczyl jesc.");
 
         RestActivity activity = new RestActivity(guest, semaphore);
         callActivity(guest, activity);
 
-//        semaphore.wait(activity);
     }
 }
