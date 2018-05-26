@@ -6,12 +6,8 @@ import sk.sim.RestaurantSimObject;
 import sk.sim.activities.guests.visit.PlacingOrderActivity;
 import sk.sim.gui.visualisation.event.GuestSitingDownEvent;
 import sk.sim.gui.visualisation.log.VisualisationLog;
-import sk.sim.gui.visualisation.object.Guest;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.utill.Logger;
-
-import java.time.Duration;
-import java.time.Instant;
 
 public class GuestActivity extends SimActivity
 {
@@ -30,8 +26,12 @@ public class GuestActivity extends SimActivity
     {
         VisualisationLog.log(guest.getId(), new GuestSitingDownEvent());
 
-        Instant start = Instant.now();
-        Logger.log(guest.debugMessage() + " Rozpoczyna wizytę");
+        double startTime  = guest.getSimTime();
+
+
+        Logger.log(() ->guest.debugMessage() + " Rozpoczyna wizytę");
+
+        waitDuration(100);
 
         PlacingOrderActivity activity = new PlacingOrderActivity(guest, semaphore);
         callActivity(guest, activity);
@@ -39,11 +39,22 @@ public class GuestActivity extends SimActivity
         semaphore.wait(activity);
         waitOnSemaphore(semaphore);
 
-        Logger.log(guest.debugMessage() + " Zakonczl wizytę");
-        Instant end = Instant.now();
+        Logger.log(() -> guest.debugMessage() + " Zakonczl wizytę");
 
-        guest.setTimeOfVisit(Duration.between(start, end));
+
+        double endTime = guest.getSimTime();
+        guest.setTimeOfVisit(endTime - startTime);
 
         RestaurantSimObject.servicedGuests.add(guest);
+
+        Logger.consoleLog(() -> guest.getWaiterSimObject().debugMessage() + "st:" + guest.getWaiterSimObject().getStressRate());
+
+        calculateTimeOfWaitingForOrder();
+
+    }
+
+    private void calculateTimeOfWaitingForOrder()
+    {
+        guest.setTimeOfWaitingForOrder(guest.getOrder().getReceiptTime() - guest.getOrder().getStartTime());
     }
 }
