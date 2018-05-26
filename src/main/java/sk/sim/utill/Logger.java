@@ -1,17 +1,14 @@
 package sk.sim.utill;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.function.Supplier;
 
 public class Logger
 {
-    private static Deque<String> log = new LinkedList<>();
+    private static StringBuilder log = new StringBuilder();
 
     public static void log(String message)
     {
-//        logger.appendText(message + '\n');
-        log.addLast(message + '\n');
+        log.append(message).append('\n');
     }
 
     public static void log(Supplier<String> messageSup)
@@ -24,8 +21,9 @@ public class Logger
 //        System.out.println(messageSup.get());
     }
 
-    public static Deque<String> getLog()
+
+    public static String getLog()
     {
-        return log;
+        return log.toString();
     }
 }

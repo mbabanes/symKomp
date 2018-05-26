@@ -105,9 +105,7 @@ public class MainWindowController
     @FXML
     public void printLogOnAction()
     {
-        Deque<String> log = Logger.getLog();
-        for(String message : log)
-            logTextArea.appendText(message);
+        logTextArea.appendText(Logger.getLog());
     }
 
     private void putMessage(String narrow, String message)
