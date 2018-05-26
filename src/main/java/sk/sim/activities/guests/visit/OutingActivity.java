@@ -20,11 +20,11 @@ public class OutingActivity extends GuestVisitActivity
     {
         VisualisationLog.log(guest.getId(), new GuestOutingEvent());
 
-        Logger.log(guest.debugMessage() + "Gość wychodzi");
+        Logger.log(() -> guest.debugMessage() + "Gość wychodzi");
         waitDuration(100);
         guest.out();
 
         semaphore.signal();
-        Logger.log(guest.debugMessage() + "Gość wyszedł");
+        Logger.log(() -> guest.debugMessage() + "Gość wyszedł");
     }
 }
