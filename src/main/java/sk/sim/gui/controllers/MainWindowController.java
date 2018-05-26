@@ -18,9 +18,11 @@ import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
 import sk.sim.gui.visualisation.Visualisation;
 import sk.sim.objects.GuestSimObject;
+import sk.sim.objects.Menu;
 import sk.sim.utill.Logger;
 
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.List;
 
 public class MainWindowController
@@ -42,6 +44,8 @@ public class MainWindowController
 
     @FXML
     private Button startButton;
+
+    @FXML Button visualisationButton;
 
     @FXML
     private TextArea logTextArea;
@@ -68,8 +72,6 @@ public class MainWindowController
     {
         simulation = new Simulation();
 
-        Logger.loggerr = logTextArea;
-
         bindTextFields();
     }
 
@@ -89,10 +91,23 @@ public class MainWindowController
         putDescriptiveStats();
 
         putChart();
+        visualisationButton.setVisible(true);
+//        debugRestaurant();
+    }
+
+    @FXML
+    public void runVisualisationOnAction()
+    {
         runVisualisation();
+        visualisationButton.setDisable(true);
+    }
 
-
-
+    @FXML
+    public void printLogOnAction()
+    {
+        Deque<String> log = Logger.getLog();
+        for(String message : log)
+            logTextArea.appendText(message);
     }
 
     private void putMessage(String narrow, String message)
@@ -163,8 +178,8 @@ public class MainWindowController
         List<GuestSimObject> guests = RestaurantSimObject.servicedGuests;
         series.setName("Czas wizyty");
         guests.stream().sorted(Comparator.comparingInt(GuestSimObject::getId)).forEach(guest -> {
-            System.out.println(guest.debugMessage() + guest.getTimeOfVisit().toMillis());
-            series.getData().add(new XYChart.Data<>(guest.getId(), guest.getTimeOfVisit().toMillis()));
+//            System.out.println(guest.debugMessage() + guest.getTimeOfVisit().toMillis());
+            series.getData().add(new XYChart.Data<>(guest.getId(), guest.getTimeOfVisit()));
         });
 
         chart.getData().add(series);
@@ -172,5 +187,24 @@ public class MainWindowController
         chart.setTitle("Liczba gości do czasu wizyty");
 
         chartVBox.getChildren().add(chart);
+    }
+
+    private void debugRestaurant()
+    {
+        RestaurantSimObject.getWaiters().forEach(waiter -> {
+            System.out.println(waiter.debugMessage() + waiter.getStressRate());
+        });
+
+        RestaurantSimObject.getCookers().forEach(cook -> {
+            System.out.println(cook.debugMessage() + cook.getStressRate());
+        });
+
+        Menu.getMeals().forEach(meal -> {
+            System.out.println(meal.debugMessage() + meal.getPreparingTime());
+        });
+
+        Menu.getDrinks().forEach(drink -> {
+            System.out.println(drink.debugMessage() + drink.getPreparingTime());
+        });
     }
 }
