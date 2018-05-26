@@ -20,7 +20,7 @@ public class TakingOrderActivity extends SimActivity
     @Override
     public void action()
     {
-        Logger.log(cook.debugMessage() + "wystartował");
+        Logger.log(() -> cook.debugMessage() + "wystartował");
 
         while (RestaurantSimObject.isOpened())
         {
@@ -50,7 +50,7 @@ public class TakingOrderActivity extends SimActivity
 
     private void prepare(OrderNote orderNote)
     {
-        Logger.log(cook.debugMessage() + "przygotowuje zamowienie:" + orderNote.getOrder().getId());
+        Logger.log(() -> cook.debugMessage() + "przygotowuje zamowienie:" + orderNote.getOrder().getId());
         cook.takeOrder();
 
         startPreparing(orderNote);
