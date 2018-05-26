@@ -3,8 +3,6 @@ package sk.sim.gui.model;
 import deskit.SimManager;
 import sk.sim.RestaurantSimObject;
 import sk.sim.activities.cook.OrderQueue;
-import sk.sim.gui.visualisation.event.Events;
-import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.*;
 import sk.sim.utill.Logger;
 
@@ -146,13 +144,13 @@ public class Simulation
             stringBuilder
                     .append(guest.debugMessage())
                     .append("Czas wizyty: ")
-                    .append(guest.getTimeOfVisit().toMillis())
+                    .append(guest.getTimeOfVisit())
                     .append(" ms")
                     .append(" | Czas oczekiwania na zamowienie: ")
-                    .append(guest.getTimeOfWaitingForOrder().toMillis())
+                    .append(guest.getTimeOfWaitingForOrder())
                     .append(" ms")
                     .append(" | Czas w kolejce: ")
-                    .append(guest.getWaitingTimeInQueue().toMillis())
+                    .append(guest.getWaitingTimeInQueue())
                     .append(" ms\n");
         });
 

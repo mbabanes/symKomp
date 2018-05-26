@@ -14,9 +14,9 @@ public class GuestsStatistics
     public GuestsStatistics()
     {
         RestaurantSimObject.servicedGuests.forEach(guest -> {
-            queueWaitingTime.addValue(guest.getWaitingTimeInQueue().toMillis());
-            orderWaitingTime.addValue(guest.getTimeOfWaitingForOrder().toMillis());
-            visitTime.addValue(guest.getTimeOfVisit().toMillis());
+            queueWaitingTime.addValue(guest.getWaitingTimeInQueue());
+            orderWaitingTime.addValue(guest.getTimeOfWaitingForOrder());
+            visitTime.addValue(guest.getTimeOfVisit());
         });
     }
 
