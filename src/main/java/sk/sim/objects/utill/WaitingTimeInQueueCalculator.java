@@ -1,29 +1,28 @@
 package sk.sim.objects.utill;
 
 import lombok.Getter;
-import lombok.Setter;
-
-import java.time.Duration;
-import java.time.Instant;
 
 @Getter
 public class WaitingTimeInQueueCalculator
 {
-    private Instant startTime;
-    private Instant endTime;
+    private double startTime;
+    private double endTime;
 
-    public WaitingTimeInQueueCalculator(Instant startTime)
+
+
+
+    public WaitingTimeInQueueCalculator(double startTime)
     {
         this.startTime = startTime;
     }
 
-    public void setEndTime(Instant endTime)
+    public void setEndTime(double endTime)
     {
         this.endTime = endTime;
     }
 
-    public Duration calculateTimeInQueue()
+    public double calculateTimeInQueue()
     {
-        return Duration.between(startTime, endTime);
+        return endTime - startTime;
     }
 }
