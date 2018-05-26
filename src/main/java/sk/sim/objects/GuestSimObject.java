@@ -17,11 +17,6 @@ public class GuestSimObject extends SimObject
     private int id = ID.getAndIncrement();
     private WaiterSimObject waiterSimObject;
     private int time;
-
-
-    private double orderTime;
-
-
     private WaitingTimeInQueueCalculator waitingTimeInQueueCalculator;
 
     private double timeOfVisit;
