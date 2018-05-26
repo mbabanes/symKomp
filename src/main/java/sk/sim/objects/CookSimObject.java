@@ -11,6 +11,8 @@ public class CookSimObject extends SimObject
 {
     public static int MAX_ORDER_REALESING = 5;
 
+    private double stressRate = 0.1;
+
     private static AtomicInteger ID = new AtomicInteger(0);
 
     private AtomicInteger currentOrderNumber = new AtomicInteger(0);
@@ -34,6 +36,12 @@ public class CookSimObject extends SimObject
     {
         currentOrderNumber.getAndIncrement();
         preparedOrdersNumber.getAndIncrement();
+        increaseStressRate();
+    }
+
+    private synchronized void increaseStressRate()
+    {
+        stressRate += 0.1;
     }
 
     public String debugMessage()
