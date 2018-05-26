@@ -26,7 +26,7 @@ public class NewGuestComingActivity extends SimActivity
             waitDuration(1000);
             if (RestaurantSimObject.expectantGuests.size() > 6)
             {
-                Logger.log("\nNowi goscie pause\n");
+                Logger.log(() -> "\nNowi goscie pause\n");
                 waitDuration(100000);
             }
 
