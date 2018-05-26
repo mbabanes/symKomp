@@ -6,8 +6,6 @@ import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.objects.GuestSimObject;
 import sk.sim.utill.Logger;
 
-import java.util.concurrent.CountDownLatch;
-
 public class RestActivity extends GuestVisitActivity
 {
     public RestActivity(GuestSimObject guest, Semaphore semaphore)
@@ -20,12 +18,12 @@ public class RestActivity extends GuestVisitActivity
     {
         VisualisationLog.log(guest.getId(), new GuestRestEvent());
 
-        Logger.log(guest.debugMessage() + "Odpoczywa po jedzeniu");
+        Logger.log(() -> guest.debugMessage() + "Odpoczywa po jedzeniu");
 
         int time = random.nextInt(700);
 
 
-        Logger.log(guest.debugMessage() + "Skonczyl odpoczywać");
+        Logger.log(() -> guest.debugMessage() + "Skonczyl odpoczywać");
 
         OutingActivity activity = new OutingActivity(guest, semaphore);
         callActivity(guest, activity);
