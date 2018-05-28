@@ -173,7 +173,7 @@
                      <children>
                         <VBox alignment="CENTER" spacing="3.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#printLogOnAction" prefHeight="25.0" prefWidth="65.0" text="Log" />
+                              <Label text="Log" />
                               <TextArea fx:id="logTextArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font name="Consolas" size="15.0" />
@@ -188,9 +188,9 @@
                            </padding>
                         </VBox>
                         <Separator orientation="VERTICAL" HBox.hgrow="ALWAYS" />
-                        <VBox alignment="CENTER" spacing="1.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" spacing="3.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label prefHeight="32.0" text="Statystyki" />
+                              <Label text="Statystyki" />
                               <TextArea fx:id="statsTextArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font name="Consolas" size="15.0" />

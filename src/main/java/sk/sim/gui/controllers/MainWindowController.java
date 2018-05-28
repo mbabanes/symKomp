@@ -1,29 +1,21 @@
 package sk.sim.gui.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import sk.sim.RestaurantSimObject;
+import sk.sim.gui.model.ChartCreator;
 import sk.sim.gui.model.GuestsStatistics;
 import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
 import sk.sim.gui.visualisation.Visualisation;
-import sk.sim.objects.GuestSimObject;
 import sk.sim.objects.Menu;
 import sk.sim.utill.Logger;
-
-import java.util.Comparator;
-import java.util.Deque;
-import java.util.List;
 
 public class MainWindowController
 {
@@ -45,7 +37,8 @@ public class MainWindowController
     @FXML
     private Button startButton;
 
-    @FXML Button visualisationButton;
+    @FXML
+    Button visualisationButton;
 
     @FXML
     private TextArea logTextArea;
@@ -78,8 +71,8 @@ public class MainWindowController
     @FXML
     public void startSimulationOnAction()
     {
-        simulation.start();
         startButton.setDisable(true);
+        simulation.start();
 
         putMessage("Statystyki kelnerów:\n", simulation.waiterStatistics());
 
@@ -92,6 +85,7 @@ public class MainWindowController
 
         putChart();
         visualisationButton.setVisible(true);
+        printLog();
 //        debugRestaurant();
     }
 
@@ -100,37 +94,6 @@ public class MainWindowController
     {
         runVisualisation();
         visualisationButton.setDisable(true);
-    }
-
-    @FXML
-    public void printLogOnAction()
-    {
-        logTextArea.appendText(Logger.getLog());
-    }
-
-    private void putMessage(String narrow, String message)
-    {
-        statsTextArea.appendText(narrow);
-        statsTextArea.appendText(message);
-    }
-
-    private void putDescriptiveStats()
-    {
-        statsTextArea.appendText("\nStatystyki opisowe:\n");
-        String message = new GuestsStatistics().getMessage();
-        statsTextArea.appendText(message);
-    }
-
-    private void runVisualisation()
-    {
-        Visualisation visualisation = new Visualisation();
-        Visualisation.canvas = canvas;
-        Visualisation.label = endLabel;
-
-        queueLabel.setVisible(true);
-
-        visualisation.initTables();
-        visualisation.runVisualisation();
     }
 
     private void bindTextFields()
@@ -146,45 +109,39 @@ public class MainWindowController
         cookNumber.textProperty().bindBidirectional(restaurantFx.cookNumberIntegerProperty(), converter);
     }
 
+    private void putMessage(String narrow, String message)
+    {
+        statsTextArea.appendText(narrow);
+        statsTextArea.appendText(message);
+    }
+
+    private void putDescriptiveStats()
+    {
+        statsTextArea.appendText("\nStatystyki opisowe:\n");
+        String message = new GuestsStatistics().getMessage();
+        statsTextArea.appendText(message);
+    }
+
     private void putChart()
     {
-        NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("Liczba gości");
+        chartVBox.getChildren().add(new ChartCreator().getChart());
+    }
 
+    private void printLog()
+    {
+        logTextArea.appendText(Logger.getLog());
+    }
 
-        xAxis.setTickLabelFormatter(new StringConverter<Number>()
-        {
-            @Override
-            public String toString(Number object)
-            {
-                return Long.toString(object.longValue());
-            }
+    private void runVisualisation()
+    {
+        Visualisation visualisation = new Visualisation();
+        Visualisation.canvas = canvas;
+        Visualisation.label = endLabel;
 
-            @Override
-            public Number fromString(String string)
-            {
-                return 0;
-            }
-        });
-        xAxis.setTickUnit(1);
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Czaś wizyty");
-        LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
+        queueLabel.setVisible(true);
 
-
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        List<GuestSimObject> guests = RestaurantSimObject.servicedGuests;
-        series.setName("Czas wizyty");
-        guests.stream().sorted(Comparator.comparingInt(GuestSimObject::getId)).forEach(guest -> {
-//            System.out.println(guest.debugMessage() + guest.getTimeOfVisit().toMillis());
-            series.getData().add(new XYChart.Data<>(guest.getId(), guest.getTimeOfVisit()));
-        });
-
-        chart.getData().add(series);
-
-        chart.setTitle("Liczba gości do czasu wizyty");
-
-        chartVBox.getChildren().add(chart);
+        visualisation.initTables();
+        visualisation.runVisualisation();
     }
 
     private void debugRestaurant()
