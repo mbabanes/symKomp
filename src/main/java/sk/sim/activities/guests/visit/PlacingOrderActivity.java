@@ -13,8 +13,6 @@ import sk.sim.objects.OrderSimObject;
 import sk.sim.objects.WaiterSimObject;
 import sk.sim.utill.Logger;
 
-import java.time.Instant;
-
 
 public class PlacingOrderActivity extends GuestVisitActivity
 {
@@ -30,11 +28,11 @@ public class PlacingOrderActivity extends GuestVisitActivity
         Logger.log(() -> guest.debugMessage() + "Składa zamowienie");
 
         browseMenu();
-        placeOrder();
+        chooseMealAndDrink();
 
         Logger.log(() -> guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
 
-        callWaiterToRealizationOrder();
+        waitForWaiter();
         VisualisationLog.log(guest.getId(), new GuestWaitingForOrder());
 
         Logger.log(() -> guest.debugMessage() + "Oczekuje na zamowienie.");
@@ -46,12 +44,7 @@ public class PlacingOrderActivity extends GuestVisitActivity
         waitDuration(time);
     }
 
-    private int designateWaitingTimeOfPlacingOrder()
-    {
-        return (RestaurantSimObject.MEALS_NUMBER + RestaurantSimObject.DRINKS_NUMBER) * random.nextInt(15);
-    }
-
-    private void placeOrder()
+    private void chooseMealAndDrink()
     {
         OrderSimObject order = new OrderSimObject();
 
@@ -61,19 +54,13 @@ public class PlacingOrderActivity extends GuestVisitActivity
         OrderQueue.allOrders.add(order);
 
         guest.setOrder(order);
-    }
+        order.setGuest(guest);
 
-    private void callWaiterToRealizationOrder()
-    {
-        guest.getOrder().setGuest(guest);
-
-        guest.getOrder().setStartTime(guest.getSimTime());
-
-        waitForWaiter();
     }
 
     private void waitForWaiter()
     {
+        guest.getOrder().setStartTime(guest.getSimTime());
         WaiterSimObject waiter = guest.getWaiterSimObject();
         while (waiter.isBusy())
         {
@@ -83,8 +70,13 @@ public class PlacingOrderActivity extends GuestVisitActivity
         waiter.setBusy(true);
 
         waitDuration(random.nextInt(1000) * waiter.getStressRate());
-//        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
+        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
         callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
+    }
+
+    private int designateWaitingTimeOfPlacingOrder()
+    {
+        return (RestaurantSimObject.MEALS_NUMBER + RestaurantSimObject.DRINKS_NUMBER) * random.nextInt(15);
     }
 
     private void chooseDrinks(OrderSimObject order)

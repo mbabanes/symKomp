@@ -11,12 +11,10 @@ import sk.sim.utill.Randomizer;
 
 public class BringingOrderForGuestActivity extends SimActivity
 {
+    private static Randomizer random = Context.getRandomizer();
 
     private OrderSimObject order;
     private Semaphore semaphore;
-
-    private static Randomizer random = Context.getRandomizer();
-
 
     public BringingOrderForGuestActivity(OrderSimObject order, Semaphore semaphore)
     {
@@ -33,7 +31,6 @@ public class BringingOrderForGuestActivity extends SimActivity
         waitDuration(random.nextInt(1000) * waiter.getStressRate());
 
         order.setReceiptTime(order.getSimTime());
-
 
         callActivity(order.getGuestSimObject(), new EatingActivity(order.getGuestSimObject(), semaphore));
 

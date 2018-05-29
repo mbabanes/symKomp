@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Getter
+
 public class RestaurantSimObject extends SimObject
 {
     public static int GUEST_NUMBER = 20;
@@ -35,7 +35,7 @@ public class RestaurantSimObject extends SimObject
 
     public static List<GuestSimObject> servicedGuests = Collections.synchronizedList(new ArrayList<>());
 
-    private static Map<CookSimObject, TakingOrderActivity> cookres = new HashMap<>();
+    private static Map<CookSimObject, TakingOrderActivity> cooks = new HashMap<>();
     private static Map<WaiterSimObject, InvitingGuestActivity> waiters = new ConcurrentHashMap<>();
 
 
@@ -52,7 +52,7 @@ public class RestaurantSimObject extends SimObject
 
         SimActivity.callActivity(this, newGuestComingActivity);
         this.callWaiters();
-        this.callCookers();
+        this.callCooks();
     }
 
 
@@ -102,7 +102,7 @@ public class RestaurantSimObject extends SimObject
         {
             CookSimObject cook = new CookSimObject();
             TakingOrderActivity takingOrderActivity = new TakingOrderActivity(cook);
-            cookres.put(cook, takingOrderActivity);
+            cooks.put(cook, takingOrderActivity);
         }
     }
 
@@ -111,9 +111,9 @@ public class RestaurantSimObject extends SimObject
         waiters.forEach(SimActivity::callActivity);
     }
 
-    private void callCookers()
+    private void callCooks()
     {
-        cookres.forEach(SimActivity::callActivity);
+        cooks.forEach(SimActivity::callActivity);
     }
 
 
@@ -147,8 +147,8 @@ public class RestaurantSimObject extends SimObject
         return waiters.keySet();
     }
 
-    public static Set<CookSimObject> getCookers()
+    public static Set<CookSimObject> getCooks()
     {
-        return cookres.keySet();
+        return cooks.keySet();
     }
 }

@@ -11,9 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class NewGuestComingActivity extends SimActivity
 {
-
-    private static Random random = new Random();
-
     private AtomicInteger counter = new AtomicInteger();
 
 

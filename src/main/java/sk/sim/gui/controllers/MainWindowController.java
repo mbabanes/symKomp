@@ -150,7 +150,7 @@ public class MainWindowController
             System.out.println(waiter.debugMessage() + waiter.getStressRate());
         });
 
-        RestaurantSimObject.getCookers().forEach(cook -> {
+        RestaurantSimObject.getCooks().forEach(cook -> {
             System.out.println(cook.debugMessage() + cook.getStressRate());
         });
 

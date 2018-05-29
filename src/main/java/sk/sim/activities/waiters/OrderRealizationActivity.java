@@ -13,6 +13,8 @@ public class OrderRealizationActivity extends SimActivity
     private OrderSimObject order;
     private Semaphore semaphore;
 
+    private WaiterSimObject waiter;
+
     public OrderRealizationActivity(OrderSimObject order, Semaphore semaphore)
     {
         this.order = order;
@@ -29,19 +31,19 @@ public class OrderRealizationActivity extends SimActivity
         OrderQueue.addOrder(orderNote);
         Logger.log(() -> order.debugMessage() +   "Przekazane do kolejki realizacji");
 
-        WaiterSimObject waiter = order.getGuestSimObject().getWaiterSimObject();
+        waiter = order.getGuestSimObject().getWaiterSimObject();
         waiter.setBusy(false);
 
         semaphore.wait(this);
         waitOnSemaphore(semaphore);
         Logger.log(() -> order.debugMessage() +  "Gotowe");
 
-        bringToGuest(waiter);
+        bringToGuest();
         Logger.log(  () -> order.debugMessage() +   "Zamowienie zrealizowane" );
 
     }
 
-    private void bringToGuest(WaiterSimObject waiter)
+    private void bringToGuest()
     {
         while (waiter.isBusy())
         {

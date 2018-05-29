@@ -4,19 +4,19 @@ import deskit.SimActivity;
 import sk.sim.objects.CookSimObject;
 import sk.sim.utill.Logger;
 
-public class PreparingActivity extends SimActivity
+public class PreparingOrderActivity extends SimActivity
 {
     private CookSimObject cook;
     private OrderNote orderNote;
 
 
-    public PreparingActivity(CookSimObject cook, OrderNote orderNote)
+    public PreparingOrderActivity(CookSimObject cook, OrderNote orderNote)
     {
         this.cook = cook;
         this.orderNote = orderNote;
     }
 
-    public PreparingActivity(OrderNote orderNote)
+    public PreparingOrderActivity(OrderNote orderNote)
     {
         this.orderNote = orderNote;
     }
@@ -25,7 +25,8 @@ public class PreparingActivity extends SimActivity
     public void action()
     {
         Logger.log(() -> cook.debugMessage() + orderNote.getOrder().debugMessage() + "W fazie przygotowania");
-        waitDuration(orderNote.getOrder().getPreparingTime() * cook.getStressRate());
+        double preparingTime = orderNote.getOrder().getPreparingTime() * cook.getStressRate();
+        waitDuration(preparingTime);
 
         Logger.log(() -> cook.debugMessage() + orderNote.getOrder().debugMessage() + "Przygotowywanie skonczone.");
         cook.getCurrentOrderNumber().decrementAndGet();
