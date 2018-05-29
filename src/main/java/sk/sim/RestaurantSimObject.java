@@ -7,7 +7,7 @@ import lombok.Getter;
 
 import sk.sim.activities.cook.TakingOrderActivity;
 import sk.sim.activities.guests.NewGuestComingActivity;
-import sk.sim.activities.waiters.TakingGuestActivity;
+import sk.sim.activities.waiters.InvitingGuestActivity;
 import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.gui.visualisation.object.Guest;
 import sk.sim.objects.*;
@@ -36,7 +36,7 @@ public class RestaurantSimObject extends SimObject
     public static List<GuestSimObject> servicedGuests = Collections.synchronizedList(new ArrayList<>());
 
     private static Map<CookSimObject, TakingOrderActivity> cookres = new HashMap<>();
-    private static Map<WaiterSimObject, TakingGuestActivity> waiters = new ConcurrentHashMap<>();
+    private static Map<WaiterSimObject, InvitingGuestActivity> waiters = new ConcurrentHashMap<>();
 
 
     private SimActivity newGuestComingActivity;
@@ -91,8 +91,8 @@ public class RestaurantSimObject extends SimObject
         for (int i = 0; i < WAITERS_NUMBER; i++)
         {
             WaiterSimObject waiter = new WaiterSimObject();
-            TakingGuestActivity takingGuestActivity = new TakingGuestActivity(waiter);
-            waiters.put(waiter, takingGuestActivity);
+            InvitingGuestActivity invitingGuestActivity = new InvitingGuestActivity(waiter);
+            waiters.put(waiter, invitingGuestActivity);
         }
     }
 

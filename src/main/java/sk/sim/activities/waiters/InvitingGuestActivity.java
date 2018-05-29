@@ -10,11 +10,11 @@ import sk.sim.utill.Logger;
 import java.time.Instant;
 
 
-public class TakingGuestActivity extends SimActivity
+public class InvitingGuestActivity extends SimActivity
 {
     private WaiterSimObject waiter;
 
-    public TakingGuestActivity(WaiterSimObject waiterSimObject)
+    public InvitingGuestActivity(WaiterSimObject waiterSimObject)
     {
         this.waiter = waiterSimObject;
     }
@@ -23,7 +23,7 @@ public class TakingGuestActivity extends SimActivity
     public void action()
     {
         Logger.log(() ->"\n" + debugMessage());
-        Logger.log(() ->"[Thread TakingGuestActivity]: " + super.getName() + super.getId());
+        Logger.log(() ->"[Thread InvitingGuestActivity]: " + super.getName() + super.getId());
 
         while ( RestaurantSimObject.isOpened() )
         {
