@@ -13,6 +13,7 @@ import sk.sim.gui.model.ChartCreator;
 import sk.sim.gui.model.GuestsStatistics;
 import sk.sim.gui.model.RestaurantFx;
 import sk.sim.gui.model.Simulation;
+import sk.sim.gui.model.SimulationBasicStats;
 import sk.sim.gui.visualisation.Visualisation;
 import sk.sim.objects.Menu;
 import sk.sim.utill.Logger;
@@ -74,11 +75,13 @@ public class MainWindowController
         startButton.setDisable(true);
         simulation.start();
 
-        putMessage("Statystyki kelnerów:\n", simulation.waiterStatistics());
+        SimulationBasicStats simulationBasicStats = new SimulationBasicStats();
 
-        putMessage("\nStatystyki kucharzy:\n", simulation.cookersStatistics());
+        putMessage("Statystyki kelnerów:\n", simulationBasicStats.waiterStatistics());
 
-        putMessage("\nStatystyki zamówień:\n", simulation.mealsAndDrinksStatistics());
+        putMessage("\nStatystyki kucharzy:\n", simulationBasicStats.cooksStatistics());
+
+        putMessage("\nStatystyki zamówień:\n", simulationBasicStats.mealsAndDrinksStatistics());
 
 
         putDescriptiveStats();
