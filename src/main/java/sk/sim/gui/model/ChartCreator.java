@@ -38,7 +38,7 @@ public class ChartCreator
         xAxis.setTickLabelFormatter(new StringToIntegerConverter());
         xAxis.setTickUnit(1);
         yAxis = new NumberAxis();
-        yAxis.setLabel("Czaś wizyty");
+        yAxis.setLabel("Czas wizyty");
 
     }
 
