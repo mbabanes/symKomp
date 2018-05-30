@@ -50,7 +50,7 @@ public class OrderRealizationActivity extends SimActivity
             waitDuration(1000);
             Logger.consoleLog(() -> waiter.debugMessage() + "zbyt zajety");
         }
-//        Logger.consoleLog( () -> waiter.debugMessage() + " zanosi jedzenie");
+        Logger.consoleLog( () -> waiter.debugMessage() + " zanosi jedzenie");
         waiter.setBusy(true);
 
         callActivity(waiter, new BringingOrderForGuestActivity(order, this.semaphore));

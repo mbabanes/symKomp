@@ -25,36 +25,47 @@ public class GuestActivity extends SimActivity
     public void action()
     {
         VisualisationLog.log(guest.getId(), new GuestSitingDownEvent());
-
         double startTime  = guest.getSimTime();
 
+        Logger.log(() -> guest.debugMessage() + " Rozpoczyna wizytę");
 
-        Logger.log(() ->guest.debugMessage() + " Rozpoczyna wizytę");
-
-        waitDuration(100);
-
-        PlacingOrderActivity activity = new PlacingOrderActivity(guest, semaphore);
-        callActivity(guest, activity);
-
-        semaphore.wait(activity);
-        waitOnSemaphore(semaphore);
+        sitDown();
+        startVisit();
 
         Logger.log(() -> guest.debugMessage() + " Zakonczl wizytę");
 
-
         double endTime = guest.getSimTime();
-        guest.setTimeOfVisit(endTime - startTime);
+        double timeOfVisit = endTime - startTime;
+        guest.setTimeOfVisit(timeOfVisit);
 
         RestaurantSimObject.servicedGuests.add(guest);
 
         Logger.consoleLog(() -> guest.getWaiterSimObject().debugMessage() + "st:" + guest.getWaiterSimObject().getStressRate());
 
         calculateTimeOfWaitingForOrder();
+    }
 
+    private void sitDown()
+    {
+        waitDuration(100);
+    }
+
+    private void startVisit()
+    {
+        PlacingOrderActivity activity = placeOrder();
+        semaphore.wait(activity);
+        waitOnSemaphore(semaphore);
     }
 
     private void calculateTimeOfWaitingForOrder()
     {
         guest.setTimeOfWaitingForOrder(guest.getOrder().getReceiptTime() - guest.getOrder().getStartTime());
+    }
+
+    private PlacingOrderActivity placeOrder()
+    {
+        PlacingOrderActivity activity = new PlacingOrderActivity(guest, semaphore);
+        callActivity(guest, activity);
+        return activity;
     }
 }

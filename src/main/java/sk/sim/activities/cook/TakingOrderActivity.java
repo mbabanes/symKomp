@@ -54,7 +54,6 @@ public class TakingOrderActivity extends SimActivity
         cook.takeOrder();
 
         startPreparing(orderNote);
-
     }
 
     private void startPreparing(OrderNote orderNote)
