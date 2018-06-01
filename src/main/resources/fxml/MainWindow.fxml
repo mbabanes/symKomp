@@ -64,7 +64,7 @@
                                             </HBox>
                                             <HBox alignment="CENTER_RIGHT">
                                                 <children>
-                                                    <Label text="Ilość gości" />
+                                                    <Label text="Liczba gości" />
                                                 </children>
                                                 <padding>
                                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -72,7 +72,7 @@
                                             </HBox>
                                             <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
                                                 <children>
-                                                    <Label text="Ilość kelnerów" />
+                                                    <Label text="Liczba kelnerów" />
                                                 </children>
                                                 <padding>
                                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -80,7 +80,7 @@
                                             </HBox>
                                             <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="2">
                                                 <children>
-                                                    <Label text="Ilość posiłków" />
+                                                    <Label text="Liczba posiłków" />
                                                 </children>
                                                 <padding>
                                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -88,7 +88,7 @@
                                             </HBox>
                                             <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="3">
                                                 <children>
-                                                    <Label text="Ilosć napojów" />
+                                                    <Label text="Liczba napojów" />
                                                 </children>
                                                 <padding>
                                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -120,7 +120,7 @@
                                             </HBox>
                                     <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="4">
                                        <children>
-                                          <Label text="Ilość kucharzy" />
+                                          <Label text="Liczba kucharzy" />
                                        </children>
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
