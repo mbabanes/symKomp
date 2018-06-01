@@ -137,13 +137,13 @@ public class MainWindowController
 
     private void runVisualisation()
     {
-        Visualisation visualisation = new Visualisation();
         Visualisation.canvas = canvas;
         Visualisation.label = endLabel;
+        Visualisation visualisation = new Visualisation();
 
         queueLabel.setVisible(true);
 
-        visualisation.initTables();
+//        visualisation.initTables();
         visualisation.runVisualisation();
     }
 

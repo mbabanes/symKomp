@@ -20,21 +20,25 @@ public class Visualisation
     public static Pane canvas;
     public static Label label;
 
-    public void initTables()
+    private Timeline timeline;
+
+    public Visualisation()
     {
-        drawTables();
+        initTables();
+        timeline = new Timeline();
+        prepareFramesForVisualisation(timeline.getKeyFrames());
     }
 
     public void runVisualisation()
     {
-        Timeline timeline = new Timeline();
-
-        prepareFramesForVisualisation(timeline.getKeyFrames());
         timeline.setCycleCount(1);
-
         timeline.play();
     }
 
+    private void initTables()
+    {
+        drawTables();
+    }
 
     private void drawTables()
     {
@@ -63,16 +67,6 @@ public class Visualisation
         }
     }
 
-    private Circle drawTable(double x, double y)
-    {
-        Circle circle = new Circle(15, Color.GREEN);
-        circle.relocate(x, y);
-
-        canvas.getChildren().add(circle);
-
-        return circle;
-    }
-
     private void prepareFramesForVisualisation(ObservableList<KeyFrame> frames)
     {
         long time = 200;
@@ -87,5 +81,15 @@ public class Visualisation
         }
 
         frames.add(new KeyFrame(Duration.millis(time), e -> label.setText("Koniec")));
+    }
+
+    private Circle drawTable(double x, double y)
+    {
+        Circle circle = new Circle(15, Color.GREEN);
+        circle.relocate(x, y);
+
+        canvas.getChildren().add(circle);
+
+        return circle;
     }
 }

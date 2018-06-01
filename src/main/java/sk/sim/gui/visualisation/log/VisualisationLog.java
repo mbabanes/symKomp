@@ -15,7 +15,7 @@ public class VisualisationLog
 
     public static Map<Guest, Events> events = new ConcurrentHashMap<>();
     public static Map<Integer, Guest> eventsOrder = new ConcurrentHashMap<>();
-    public static Map<Integer, Guest> guests = new ConcurrentHashMap<>();
+    private static Map<Integer, Guest> guests = new ConcurrentHashMap<>();
 
     public static void log(int guestId, Event event)
     {
