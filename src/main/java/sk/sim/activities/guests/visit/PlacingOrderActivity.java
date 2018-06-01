@@ -32,9 +32,9 @@ public class PlacingOrderActivity extends GuestVisitActivity
         browseMenu();
         chooseMealAndDrink();
 
+        waitForWaiter();
+        passOrderToWaiter();
         Logger.log(() -> guest.debugMessage() + "Złożył zamowienie (m:" + guest.getOrder().getMealsNumber() + " |d:" + guest.getOrder().getDrinksNumber() + ").");
-
-        waitForWaiterAndPassOrderToRealization();
 
         VisualisationLog.log(guest.getId(), new GuestWaitingForOrder());
         Logger.log(() -> guest.debugMessage() + "Oczekuje na zamowienie.");
@@ -59,11 +59,18 @@ public class PlacingOrderActivity extends GuestVisitActivity
         order.setGuest(guest);
     }
 
-    private void waitForWaiterAndPassOrderToRealization()
+    private void waitForWaiter()
     {
         guest.getOrder().setStartTime(guest.getSimTime());
-        waitForWaiter();
-        passOrderToRealization();
+        waiter = guest.getWaiterSimObject();
+        tryCallWaiter();
+    }
+
+    private void passOrderToWaiter()
+    {
+        waitDuration(random.nextInt(1000) * waiter.getStressRate());
+        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
+        callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }
 
     private int designateWaitingTimeOfPlacingOrder()
@@ -90,19 +97,6 @@ public class PlacingOrderActivity extends GuestVisitActivity
             int mealId = random.nextInt(RestaurantSimObject.MEALS_NUMBER);
             order.addMeal(Menu.getMeal(mealId));
         }
-    }
-
-    private void waitForWaiter()
-    {
-        waiter = guest.getWaiterSimObject();
-        tryCallWaiter();
-    }
-
-    private void passOrderToRealization()
-    {
-        waitDuration(random.nextInt(1000) * waiter.getStressRate());
-        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
-        callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }
 
     private void tryCallWaiter()
