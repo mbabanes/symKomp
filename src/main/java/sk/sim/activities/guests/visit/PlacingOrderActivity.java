@@ -16,6 +16,8 @@ import sk.sim.utill.Logger;
 
 public class PlacingOrderActivity extends GuestVisitActivity
 {
+    private WaiterSimObject waiter;
+
     public PlacingOrderActivity(GuestSimObject guest, Semaphore semaphore)
     {
         super(guest, semaphore);
@@ -60,8 +62,8 @@ public class PlacingOrderActivity extends GuestVisitActivity
     private void waitForWaiterAndPassOrderToRealization()
     {
         guest.getOrder().setStartTime(guest.getSimTime());
-        WaiterSimObject waiter = waitForWaiter();
-        passOrderToRealization(waiter);
+        waitForWaiter();
+        passOrderToRealization();
     }
 
     private int designateWaitingTimeOfPlacingOrder()
@@ -90,22 +92,26 @@ public class PlacingOrderActivity extends GuestVisitActivity
         }
     }
 
-    private WaiterSimObject waitForWaiter()
+    private void waitForWaiter()
     {
-        WaiterSimObject waiter = guest.getWaiterSimObject();
+        waiter = guest.getWaiterSimObject();
+        tryCallWaiter();
+    }
+
+    private void passOrderToRealization()
+    {
+        waitDuration(random.nextInt(1000) * waiter.getStressRate());
+        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
+        callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
+    }
+
+    private void tryCallWaiter()
+    {
         while (waiter.isBusy())
         {
             waitDuration(1000);
             Logger.consoleLog(() -> waiter.debugMessage() + " zbyt zajety");
         }
         waiter.setBusy(true);
-        return waiter;
-    }
-
-    private void passOrderToRealization(WaiterSimObject waiter)
-    {
-        waitDuration(random.nextInt(1000) * waiter.getStressRate());
-        Logger.consoleLog(() -> waiter.debugMessage() + " przyjal zamowienie i zanosi do realizacji");
-        callActivity(waiter, new OrderRealizationActivity(guest.getOrder(), semaphore));
     }
 }
