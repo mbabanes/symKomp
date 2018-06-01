@@ -10,7 +10,6 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import sk.sim.RestaurantSimObject;
 import sk.sim.gui.visualisation.event.Event;
-import sk.sim.gui.visualisation.event.Events;
 import sk.sim.gui.visualisation.log.VisualisationLog;
 import sk.sim.gui.visualisation.object.Table;
 import sk.sim.objects.WaiterSimObject;
@@ -71,12 +70,10 @@ public class Visualisation
     {
         long time = 200;
 
-        for (Integer order : VisualisationLog.eventsOrder.keySet())
-        {
-            Events events = VisualisationLog.events.get(VisualisationLog.eventsOrder.get(order));
-            Event event = events.getCurrentEvent();
 
-            frames.add( new KeyFrame( Duration.millis(time) , e -> event.action() ) );
+        for (Event event : VisualisationLog.events)
+        {
+            frames.add(new KeyFrame(Duration.millis(time), e -> event.action()));
             time += 400;
         }
 
