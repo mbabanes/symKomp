@@ -9,11 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 import sk.sim.RestaurantSimObject;
-import sk.sim.gui.model.ChartCreator;
-import sk.sim.gui.model.GuestsStatistics;
-import sk.sim.gui.model.RestaurantFx;
-import sk.sim.gui.model.Simulation;
-import sk.sim.gui.model.SimulationBasicStats;
+import sk.sim.gui.model.*;
 import sk.sim.gui.visualisation.Visualisation;
 import sk.sim.objects.Menu;
 import sk.sim.utill.Logger;
@@ -75,16 +71,11 @@ public class MainWindowController
         startButton.setDisable(true);
         simulation.start();
 
-        SimulationBasicStats simulationBasicStats = new SimulationBasicStats();
-
-        putMessage("Statystyki kelnerów:\n", simulationBasicStats.waiterStatistics());
-
-        putMessage("\nStatystyki kucharzy:\n", simulationBasicStats.cooksStatistics());
-
-        putMessage("\nStatystyki zamówień:\n", simulationBasicStats.mealsAndDrinksStatistics());
-
 
         putDescriptiveStats();
+        putStatsAboutWaitersCooksAndMenu();
+
+
 
         putChart();
         visualisationButton.setVisible(true);
@@ -112,17 +103,40 @@ public class MainWindowController
         cookNumber.textProperty().bindBidirectional(restaurantFx.cookNumberIntegerProperty(), converter);
     }
 
-    private void putMessage(String narrow, String message)
-    {
-        statsTextArea.appendText(narrow);
-        statsTextArea.appendText(message);
-    }
-
     private void putDescriptiveStats()
     {
-        statsTextArea.appendText("\nStatystyki opisowe:\n");
-        String message = new GuestsStatistics().getMessage();
-        statsTextArea.appendText(message);
+        statsTextArea.appendText("Statystyki opisowe:\n");
+        putMessageWithGuestsStats();
+        putMessageWithWaiterStats();
+        putMessageWithCooksStats();
+    }
+
+    private void putMessageWithGuestsStats()
+    {
+        String guestsStatsMsg = new GuestsStatistics().getMessage();
+        statsTextArea.appendText(guestsStatsMsg);
+    }
+
+    private void putMessageWithWaiterStats()
+    {
+        String waiterStatsMsg = new WaiterStatistics().getMessage();
+        statsTextArea.appendText(waiterStatsMsg);
+    }
+
+    private void putMessageWithCooksStats()
+    {
+        String cooksStatsMsg = new CookStatistics().getMessage();
+        statsTextArea.appendText(cooksStatsMsg);
+    }
+
+    private void putStatsAboutWaitersCooksAndMenu()
+    {
+        SimulationBasicStats simulationBasicStats = new SimulationBasicStats();
+        putMessage("\nStatystyki kelnerów:\n", simulationBasicStats.waiterStatistics());
+
+        putMessage("\nStatystyki kucharzy:\n", simulationBasicStats.cooksStatistics());
+
+        putMessage("\nStatystyki zamówień:\n", simulationBasicStats.mealsAndDrinksStatistics());
     }
 
     private void putChart()
@@ -133,6 +147,12 @@ public class MainWindowController
     private void printLog()
     {
         logTextArea.appendText(Logger.getLog());
+    }
+
+    private void putMessage(String narrow, String message)
+    {
+        statsTextArea.appendText(narrow);
+        statsTextArea.appendText(message);
     }
 
     private void runVisualisation()
