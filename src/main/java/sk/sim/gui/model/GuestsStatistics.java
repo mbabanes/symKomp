@@ -68,7 +68,7 @@ public class GuestsStatistics
         StringBuilder pattern = new StringBuilder();
         pattern.append("\nŚredni czas oczekiwania na zamówienie: {0}\n")
                 .append("Najdłuższy czas oczekiwnaia na zamówienie: {1}\n")
-                .append("Najkrótszy czas oczekiwnaia w zamówienie: {2}\n")
+                .append("Najkrótszy czas oczekiwnaia na zamówienie: {2}\n")
                 .append("Mediana czasu oczekiwania na zamowienia: {3}\n")
                 .append("Odchylenie standardowe od czasu oczekiwania na zamówienie: {4}\n");
 
