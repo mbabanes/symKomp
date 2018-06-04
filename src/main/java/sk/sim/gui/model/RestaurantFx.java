@@ -7,10 +7,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class RestaurantFx
 {
-    private IntegerProperty guestNumberIntegerProperty = new SimpleIntegerProperty(20);
+    private IntegerProperty guestNumberIntegerProperty = new SimpleIntegerProperty(400);
     private IntegerProperty waitersNumberIntegerProperty = new SimpleIntegerProperty(3);
-    private IntegerProperty mealsNumberIntegerProperty = new SimpleIntegerProperty(10);
-    private IntegerProperty drinksNumberIntegerProperty = new SimpleIntegerProperty(5);
+    private IntegerProperty mealsNumberIntegerProperty = new SimpleIntegerProperty(25);
+    private IntegerProperty drinksNumberIntegerProperty = new SimpleIntegerProperty(15);
     private IntegerProperty cookNumberIntegerProperty = new SimpleIntegerProperty(3);
 
 
