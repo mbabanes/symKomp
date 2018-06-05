@@ -35,7 +35,7 @@ public class MainWindowController
     private Button startButton;
 
     @FXML
-    Button visualisationButton;
+    private Button visualisationButton;
 
     @FXML
     private TextArea logTextArea;
