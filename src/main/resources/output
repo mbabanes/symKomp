@@ -1,36 +1,450 @@
+K-C
+3-3
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 67 299,478
+Zsumowany czas pobytu: 26 919 791,4
+Najdłuższy czas pobytu: 209 895,6
+Najkrótszy czas pobytu: 2 165,2
+Odchylenie standardowe od czasu pobytu: 46 571,84
+Mediana czasu pobytu: 58 680,75
+
+Średni czas oczekiwania w kolejce: 21 566,75
+Najdłuższy czas oczekiwania w kolejce: 142 900
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 9 900
+Odchylenie standardowe od czasu oczekiwania w kolejce: 27 620,374
+
+Średni czas oczekiwania na zamówienie: 66 201,438
+Najdłuższy czas oczekiwnaia na zamówienie: 208 675,6
+Najkrótszy czas oczekiwnaia na zamówienie: 1 255,2
+Mediana czasu oczekiwania na zamowienia: 57 310,75
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 46 569,711
+
+
 Statystyki kelnerów:
-[Kelner 0]: obsłużył:7
-[Kelner 2]: obsłużył:8
-[Kelner 1]: obsłużył:7
+Średnia liczba obsłużonych gości na kelnera: 134
+Mediana liczby obsłużonych gości na kelnera: 136
+
 
 Statystyki kucharzy:
-[Cook 0]: Obsłużył 10
-[Cook 1]: Obsłużył 6
-[Cook 2]: Obsłużył 5
+Średnia liczba zrealizowanych zamówień na kucharza: 133,3333333
+Mediana liczby zrealizowanych zamówień na kucharza: 140
 
-Statystyki zamówień:
-Dania:
-[Meal 0] zamowiono: 7
-[Meal 1] zamowiono: 7
-[Meal 2] zamowiono: 5
-[Meal 3] zamowiono: 8
-[Meal 4] zamowiono: 1
-[Meal 5] zamowiono: 6
-[Meal 6] zamowiono: 8
-[Meal 7] zamowiono: 6
-[Meal 8] zamowiono: 8
-[Meal 9] zamowiono: 6
-Napoje:
-[Drink 0] zamowiono: 9
-[Drink 1] zamowiono: 17
-[Drink 2] zamowiono: 18
-[Drink 3] zamowiono: 8
-[Drink 4] zamowiono: 22
 
-400 3-3 Mediana czasu oczekiwania na zamowienia: 56 476,25
-400 5-3 Mediana czasu oczekiwania na zamowienia: 47 941
-400 8-3 Mediana czasu oczekiwania na zamowienia: 67 169,5
-400 8-5 Mediana czasu oczekiwania na zamowienia: 29 317,8
-400 10-5 Mediana czasu oczekiwania na zamowienia: 31 288
-400 3-5 Mediana czasu oczekiwania na zamowienia: 38 669,9
-400 10-10 Mediana czasu oczekiwania na zamowienia: 18 932,4
+6-3
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 68 586,232
+Zsumowany czas pobytu: 27 571 665,1
+Najdłuższy czas pobytu: 228 239,1
+Najkrótszy czas pobytu: 1 873,1
+Odchylenie standardowe od czasu pobytu: 47 819,506
+Mediana czasu pobytu: 58 152,65
+
+Średni czas oczekiwania w kolejce: 8 030,597
+Najdłuższy czas oczekiwania w kolejce: 78 300
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 14 650,886
+
+Średni czas oczekiwania na zamówienie: 67 445,622
+Najdłuższy czas oczekiwnaia na zamówienie: 227 292,1
+Najkrótszy czas oczekiwnaia na zamówienie: 1 265,1
+Mediana czasu oczekiwania na zamowienia: 57 068,45
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 47 831,178
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 67
+Mediana liczby obsłużonych gości na kelnera: 69
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 134
+Mediana liczby zrealizowanych zamówień na kucharza: 136
+
+
+6-6
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 32 240,602
+Zsumowany czas pobytu: 12 960 722,1
+Najdłuższy czas pobytu: 95 376,6
+Najkrótszy czas pobytu: 1 467
+Odchylenie standardowe od czasu pobytu: 21 384,607
+Mediana czasu pobytu: 27 700,15
+
+Średni czas oczekiwania w kolejce: 3 060,448
+Najdłuższy czas oczekiwania w kolejce: 32 500
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 6 519,31
+
+Średni czas oczekiwania na zamówienie: 31 135,737
+Najdłuższy czas oczekiwnaia na zamówienie: 93 992,6
+Najkrótszy czas oczekiwnaia na zamówienie: 609
+Mediana czasu oczekiwania na zamowienia: 26 504,8
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 21 371,46
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 67
+Mediana liczby obsłużonych gości na kelnera: 66,5
+
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 67
+Mediana liczby zrealizowanych zamówień na kucharza: 65
+
+
+12-6
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 30 487,552
+Zsumowany czas pobytu: 12 103 558
+Najdłuższy czas pobytu: 99 218,5
+Najkrótszy czas pobytu: 1 987
+Odchylenie standardowe od czasu pobytu: 20 019,774
+Mediana czasu pobytu: 26 374,5
+
+Średni czas oczekiwania w kolejce: 692,191
+Najdłuższy czas oczekiwania w kolejce: 15 300
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 2 175,243
+
+Średni czas oczekiwania na zamówienie: 29 361,673
+Najdłuższy czas oczekiwnaia na zamówienie: 98 532,5
+Najkrótszy czas oczekiwnaia na zamówienie: 1 106
+Mediana czasu oczekiwania na zamowienia: 25 519,8
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 20 029,464
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 33,5
+Mediana liczby obsłużonych gości na kelnera: 33,5
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 66,16666667
+Mediana liczby zrealizowanych zamówień na kucharza: 66,5
+
+12-3
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 111 875,595
+Zsumowany czas pobytu: 44 973 989,1
+Najdłuższy czas pobytu: 355 276,6
+Najkrótszy czas pobytu: 2 568,3
+Odchylenie standardowe od czasu pobytu: 80 865,726
+Mediana czasu pobytu: 107 568,15
+
+Średni czas oczekiwania w kolejce: 4 116,169
+Najdłuższy czas oczekiwania w kolejce: 52 300
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 9 571,376
+
+Średni czas oczekiwania na zamówienie: 110 736,978
+Najdłuższy czas oczekiwnaia na zamówienie: 353 875,6
+Najkrótszy czas oczekiwnaia na zamówienie: 1 797,3
+Mediana czasu oczekiwania na zamowienia: 106 869,85
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 80 832,521
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 33,5
+Mediana liczby obsłużonych gości na kelnera: 33
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 134
+Mediana liczby zrealizowanych zamówień na kucharza: 133
+
+12-12
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 17 202,215
+Zsumowany czas pobytu: 6 880 885,8
+Najdłuższy czas pobytu: 56 789,8
+Najkrótszy czas pobytu: 1 587
+Odchylenie standardowe od czasu pobytu: 10 587,58
+Mediana czasu pobytu: 15 748,75
+
+Średni czas oczekiwania w kolejce: 99,75
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 5
+
+Średni czas oczekiwania na zamówienie: 16 064,559
+Najdłuższy czas oczekiwnaia na zamówienie: 55 556,8
+Najkrótszy czas oczekiwnaia na zamówienie: 942
+Mediana czasu oczekiwania na zamowienia: 14 658,3
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 10 561,9
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 33,5
+Mediana liczby obsłużonych gości na kelnera: 34
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 33,33333333
+Mediana liczby zrealizowanych zamówień na kucharza: 31,5
+
+15-12
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 17 423,781
+Zsumowany czas pobytu: 6 934 664,7
+Najdłuższy czas pobytu: 55 963,8
+Najkrótszy czas pobytu: 1 997
+Odchylenie standardowe od czasu pobytu: 10 948,097
+Mediana czasu pobytu: 15 424,9
+
+Średni czas oczekiwania w kolejce: 99,749
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 5,013
+
+Średni czas oczekiwania na zamówienie: 16 267,879
+Najdłuższy czas oczekiwnaia na zamówienie: 54 496,8
+Najkrótszy czas oczekiwnaia na zamówienie: 968,4
+Mediana czasu oczekiwania na zamowienia: 14 235,05
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 10 977,195
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 26,8
+Mediana liczby obsłużonych gości na kelnera: 27
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 33,16666667
+Mediana liczby zrealizowanych zamówień na kucharza: 33
+
+15-3
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 141 515,061
+Zsumowany czas pobytu: 56 889 054,7
+Najdłuższy czas pobytu: 374 316,2
+Najkrótszy czas pobytu: 2 414,2
+Odchylenie standardowe od czasu pobytu: 101 193,208
+Mediana czasu pobytu: 133 507,85
+
+Średni czas oczekiwania w kolejce: 3 644,527
+Najdłuższy czas oczekiwania w kolejce: 46 500
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 8 503,72
+
+Średni czas oczekiwania na zamówienie: 140 412,736
+Najdłuższy czas oczekiwnaia na zamówienie: 372 757,2
+Najkrótszy czas oczekiwnaia na zamówienie: 1 624,2
+Mediana czasu oczekiwania na zamowienia: 132 146,75
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 101 201,307
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 26,8
+Mediana liczby obsłużonych gości na kelnera: 26
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 134
+Mediana liczby zrealizowanych zamówień na kucharza: 134
+
+
+15-6
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 31 675,142
+Zsumowany czas pobytu: 12 733 407
+Najdłuższy czas pobytu: 104 508,4
+Najkrótszy czas pobytu: 1 952,6
+Odchylenie standardowe od czasu pobytu: 22 074,751
+Mediana czasu pobytu: 25 905
+
+Średni czas oczekiwania w kolejce: 260,945
+Najdłuższy czas oczekiwania w kolejce: 8 300
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 996,248
+
+Średni czas oczekiwania na zamówienie: 30 560,945
+Najdłuższy czas oczekiwnaia na zamówienie: 103 736,4
+Najkrótszy czas oczekiwnaia na zamówienie: 977,2
+Mediana czasu oczekiwania na zamowienia: 24 479,9
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 22 071,821
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 26,8
+Mediana liczby obsłużonych gości na kelnera: 26
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 67
+Mediana liczby zrealizowanych zamówień na kucharza: 67
+
+
+15-15
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 15 657,078
+Zsumowany czas pobytu: 6 262 831,3
+Najdłuższy czas pobytu: 48 771,4
+Najkrótszy czas pobytu: 1 574,3
+Odchylenie standardowe od czasu pobytu: 9 809,694
+Mediana czasu pobytu: 13 748,8
+
+Średni czas oczekiwania w kolejce: 99,75
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 5
+
+Średni czas oczekiwania na zamówienie: 14 543,351
+Najdłuższy czas oczekiwnaia na zamówienie: 47 691,4
+Najkrótszy czas oczekiwnaia na zamówienie: 637,8
+Mediana czasu oczekiwania na zamowienia: 12 304,85
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 9 820,125
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 26,8
+Mediana liczby obsłużonych gości na kelnera: 26
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 26,66666667
+Mediana liczby zrealizowanych zamówień na kucharza: 28
+
+
+20-3
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 180 932,869
+Zsumowany czas pobytu: 72 735 013,4
+Najdłuższy czas pobytu: 497 264,6
+Najkrótszy czas pobytu: 2 723
+Odchylenie standardowe od czasu pobytu: 128 853,489
+Mediana czasu pobytu: 179 322,3
+
+Średni czas oczekiwania w kolejce: 3 126,119
+Najdłuższy czas oczekiwania w kolejce: 55 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 8 561
+
+Średni czas oczekiwania na zamówienie: 179 762,1
+Najdłuższy czas oczekiwnaia na zamówienie: 495 440,6
+Najkrótszy czas oczekiwnaia na zamówienie: 1 161
+Mediana czasu oczekiwania na zamowienia: 178 077,3
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 128 815,552
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 20,1
+Mediana liczby obsłużonych gości na kelnera: 19
+
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 134
+Mediana liczby zrealizowanych zamówień na kucharza: 135
+
+
+20-6
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 38 324,701
+Zsumowany czas pobytu: 15 368 205
+Najdłuższy czas pobytu: 140 447,6
+Najkrótszy czas pobytu: 1 578,2
+Odchylenie standardowe od czasu pobytu: 29 934,937
+Mediana czasu pobytu: 30 230,4
+
+Średni czas oczekiwania w kolejce: 370,574
+Najdłuższy czas oczekiwania w kolejce: 13 900
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 1 400,547
+
+Średni czas oczekiwania na zamówienie: 37 166,746
+Najdłuższy czas oczekiwnaia na zamówienie: 139 910,6
+Najkrótszy czas oczekiwnaia na zamówienie: 716,2
+Mediana czasu oczekiwania na zamowienia: 29 090,2
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 29 928,667
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 20,1
+Mediana liczby obsłużonych gości na kelnera: 18,5
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 66,83333333
+Mediana liczby zrealizowanych zamówień na kucharza: 68
+
+20-12
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 17 894,119
+Zsumowany czas pobytu: 7 157 647,5
+Najdłuższy czas pobytu: 55 386,4
+Najkrótszy czas pobytu: 2 379,4
+Odchylenie standardowe od czasu pobytu: 11 412,469
+Mediana czasu pobytu: 15 473,45
+
+Średni czas oczekiwania w kolejce: 99,75
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 5
+
+Średni czas oczekiwania na zamówienie: 16 804,649
+Najdłuższy czas oczekiwnaia na zamówienie: 54 206,4
+Najkrótszy czas oczekiwnaia na zamówienie: 1 074
+Mediana czasu oczekiwania na zamowienia: 14 233,05
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 11 406,33
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 20,1
+Mediana liczby obsłużonych gości na kelnera: 20,5
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 33,33333333
+Mediana liczby zrealizowanych zamówień na kucharza: 34
+
+
+20-15
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 14 516,118
+Zsumowany czas pobytu: 5 820 963,4
+Najdłuższy czas pobytu: 46 708,5
+Najkrótszy czas pobytu: 1 732,8
+Odchylenie standardowe od czasu pobytu: 9 095,695
+Mediana czasu pobytu: 12 548
+
+Średni czas oczekiwania w kolejce: 99,751
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 4,994
+
+Średni czas oczekiwania na zamówienie: 13 347,485
+Najdłuższy czas oczekiwnaia na zamówienie: 46 037,5
+Najkrótszy czas oczekiwnaia na zamówienie: 858,8
+Mediana czasu oczekiwania na zamowienia: 11 473
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 9 079,788
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 20,1
+Mediana liczby obsłużonych gości na kelnera: 19,5
+
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 26,73333333
+Mediana liczby zrealizowanych zamówień na kucharza: 26
+
+
+20-20
+Statystyki opisowe:
+Średni czas pobytu gościa wynosi 12 021,44
+Zsumowany czas pobytu: 4 796 554,6
+Najdłuższy czas pobytu: 34 085,4
+Najkrótszy czas pobytu: 1 464,4
+Odchylenie standardowe od czasu pobytu: 7 023,161
+Mediana czasu pobytu: 10 317
+
+Średni czas oczekiwania w kolejce: 99,749
+Najdłuższy czas oczekiwania w kolejce: 100
+Najkrótszy czas oczekiwnaia w kolejce: 0
+Mediana czasu oczekiwania w kolejce: 100
+Odchylenie standardowe od czasu oczekiwania w kolejce: 5,006
+
+Średni czas oczekiwania na zamówienie: 10 899,26
+Najdłuższy czas oczekiwnaia na zamówienie: 32 716,2
+Najkrótszy czas oczekiwnaia na zamówienie: 645,8
+Mediana czasu oczekiwania na zamowienia: 9 228,4
+Odchylenie standardowe od czasu oczekiwania na zamówienie: 7 026,239
+
+Statystyki kelnerów:
+Średnia liczba obsłużonych gości na kelnera: 20,1
+Mediana liczby obsłużonych gości na kelnera: 19,5
+
+
+Statystyki kucharzy:
+Średnia liczba zrealizowanych zamówień na kucharza: 19,95
+Mediana liczby zrealizowanych zamówień na kucharza: 20
