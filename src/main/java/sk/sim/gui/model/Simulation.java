@@ -44,9 +44,9 @@ public class Simulation
         SimManager.getSimManager().startSimulation();
         Logger.log("Koniec");
 
-        Logger.log("Zamowienia: " + OrderQueue.orders.size());
+//        Logger.log("Zamowienia: " + OrderQueue.orders.size());
 
-        Logger.log("Gości w kolejce: " + Integer.toString(RestaurantSimObject.expectantGuests.size()));
+//        Logger.log("Gości w kolejce: " + Integer.toString(RestaurantSimObject.expectantGuests.size()));
     }
 
     private void setMainPropertiesOfSimulation()
