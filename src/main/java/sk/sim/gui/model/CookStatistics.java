@@ -25,7 +25,7 @@ public class CookStatistics
         String message = MessageFormat.format(
                 pattern.toString(),
                 ds.getMean(),
-                ds.getPercentile(0.5));
+                ds.getPercentile(50));
 
         return message;
     }
